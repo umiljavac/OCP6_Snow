@@ -1,0 +1,12 @@
+{% extends "layout.html.twig" %}
+
+{% block body %}
+
+{{ include('views/addForm.html.twig') }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+<script src="{{ asset('js/form.js') }}"></script>
+{% endblock %}

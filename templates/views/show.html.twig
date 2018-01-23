@@ -1,0 +1,87 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block header %}
+    {% set img = trick.images.first %}
+    <img class="full-img img-header" src="{{ "../" ~ img.getUploadDir() ~ "/" ~ img.url }}" alt="{{ img.alt }}">
+{% endblock %}
+
+{% block body %}
+    <section id="trick-show">
+        <div class="container">
+            <div class="trick-name row">
+                <h1 class="text-center ws-lg">{{ trick.dbToName }}</h1>
+            </div>
+        </div>
+        <div class="flex-div">
+            {% for image in trick.images %}
+                <div class="img-slot">
+                    <div class="photo">
+                        <img class="img-responsive image" style="background-image:url({{ "../" ~ image.getUploadDir() ~ "/" ~ image.url }})" alt="{{ image.alt }}" src="{{ "../" ~ image.getUploadDir() ~ "/" ~ image.url }}">
+                    </div>
+                </div>
+            {% endfor %}
+            {% for video in trick.videos %}
+                <div class="img-slot">
+                    <iframe width="200" height="140" src="{{ video.link }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="container">
+            <div class="trick-content row">
+                <div class="description">
+                    <p>{{ trick.description }}</p>
+                </div>
+                <div class="row trick-info">
+                    <div class="col-md-offset-3 col-xs-4 col-md-2 text-center trick-date">
+                        <div class="header-trick-info"><h4>Date d'ajout</h4></div>
+                        <div class="body-trick-info"><p>{{ trick.date | date('d/m/Y') }}</p></div>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center trick-cat">
+                        <div class="header-trick-info"><h4>Catégorie</h4></div>
+                        <div class="body-trick-info"><p>{{ trick.trickGroup.name }}</p></div>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center trick-update">
+                        <div class="header-trick-info"><h4>Modifiée</h4></div>
+                        <div class="body-trick-info"><p>
+                        {% if trick.updateDate != null %}
+                            {{ trick.updateDate | date('d/m/Y') }}
+                        {% else %}
+                                Nop</p></div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% if is_granted('ROLE_USER') %}
+        {{ include('views/message.html.twig') }}
+        {{ include('views/commentScratchForm.html.twig') }}
+    {% endif %}
+    <section id="comments">
+    {% for comment in trick.comments %}
+        <div class="container">
+            <div class="row trick-comments">
+                <div class="comment-div col-md-offset-2 col-md-8 col-sm-12">
+                    <div class="row">
+                        <div class="col-xs-2 user-name">
+                            <p>{{ comment.user.username }}</p>
+                        </div>
+                        <div class="col-xs-10 user-comment">
+                            <p>{{ comment.content }}</p>
+                            <div class="pull-right">
+                                <p>{{ comment.date | date('d/m/Y') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}

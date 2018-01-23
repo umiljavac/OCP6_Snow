@@ -1,0 +1,50 @@
+{% extends "layout.html.twig" %}
+
+{% block body %}
+  <div class="well">
+      <div class="text-center">
+        <h3 class="margin-top-xl">Créer un nouveau compte</h3>
+      </div>
+      <div class="row">
+        <div class="custom-form col-md-offset-2 col-md-8 col-sm-12">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            <div class="form-group margin-top">
+                {{ form_label(form.username, "Pseudo") }}
+                {{ form_errors(form.username) }}
+                <div>
+                    {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group margin-top">
+                {{ form_label(form.email, 'Email') }}
+                <div>
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group margin-top">
+                {{ form_label(form.plainPassword.first, "Mot de passe") }}
+                {{ form_errors(form.plainPassword.first) }}
+                <div>
+                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group margin-top">
+                {{ form_label(form.plainPassword.second, "Confirmer votre mot de passe") }}
+                {{ form_errors(form.plainPassword.second) }}
+                <div>
+                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group margin-top">
+                <button  class="btn btn-success" type="submit">Créer ce compte </button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+      </div>
+  </div>
+{% endblock  %}

@@ -1,0 +1,17 @@
+
+<div class="well custom-form col-md-offset-2 col-md-8 col-sm-12">
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <div class="form-group margin-top">
+        {{ form_label(form.content, "Laisser un commentaire") }}
+        {{ form_errors(form.content) }}
+        <div>
+            {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-group margin-top">
+        {{ form_widget(form.ok, {'attr': {'class': 'btn btn-primary ok'}}) }}
+    </div>
+{{ form_end(form) }}
+</div>

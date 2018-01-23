@@ -1,0 +1,40 @@
+<div class="well custom-form col-md-offset-2 col-md-8 col-sm-12">
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <div class="form-group margin-top">
+        {{ form_label(form.name, "Nom de la figure") }}
+        {{ form_errors(form.name) }}
+        <div>
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group margin-top">
+        {{ form_label(form.trickGroup, 'Groupe de la figure') }}
+        <div>
+            {{ form_widget(form.trickGroup, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group margin-top">
+        {{ form_label(form.description, 'Description') }}
+        {{ form_errors(form.description) }}
+        <div>
+            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '10'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group margin-top">
+       {{ form_row(form.images, {'attr': {'class': 'form-media'}}) }}
+        <a href="#" id="add_image" class="btn btn-default">Ajouter une image</a>
+    </div>
+    <div class="form-group margin-top">
+        {{ form_row(form.videos, {'attr': {'class': 'form-media'}}) }}
+        <a href="#" id="add_video" class="btn btn-default">Ajouter une vidéo</a>
+    </div>
+    <div class="form-group margin-top">
+        {{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+    </div>
+    {{ form_end(form) }}
+</div>

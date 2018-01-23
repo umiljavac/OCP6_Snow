@@ -1,0 +1,23 @@
+.flex-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.img-slot {
+    position: relative;
+    background-color: transparent;
+    height: 205px;
+}
+
+.image {
+    height: 140px;
+    width: 200px;
+    border : 3px solid black;
+    margin-top: 15px;
+}
+
+iframe {
+    margin-top: 15px;
+}

@@ -1,0 +1,375 @@
+body {
+    /* background-color: #C9C5C4; */
+    background-color: white;
+    font-family: 'Monoton', cursive;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a {
+    color: black;
+}
+
+.ws-lg {
+    word-spacing: 20px;
+}
+
+.ws-md {
+    word-spacing: 10px;
+}
+/***************************************
+                FONT
+
+ font-family: 'Sedgwick Ave Display', cursive;
+
+ font-family: 'Indie Flower', cursive;
+
+ font-family: 'Shrikhand', cursive;
+
+
+
+    font-family: 'Permanent Marker', cursive; +1
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-family: 'Bangers', cursive; +1
+
+    font-family: 'Caveat', cursive; +2
+
+    font-family: 'Monoton', cursive; +3
+
+    font-family: 'Rock Salt', cursive; -1
+
+    font-family: 'Special Elite', cursive;
+
+ **************************************/
+
+/***************************************
+                IMG
+ **************************************/
+.full-img {
+    width: 100%;
+    max-height: 815px;
+}
+
+.img-header {
+    margin-top: 50px;
+}
+
+.img-footer {
+}
+
+.main-head {
+    position: relative;
+}
+
+.text-uppon-img {
+    text-align: center;
+   /* background-color: rgba(88, 244, 233, 0.2); */
+    background-color: rgba(23, 24, 23, 0.4);
+    border: none !important;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.text-uppon-img2 {
+    background-color: rgba(2, 0, 0, 0.2);
+    border: none !important;
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+}
+
+.text-uppon-img p, .text-uppon-img2 p {
+    font-size: 2.5vw;
+    color: black;
+    padding-top: 1vw;
+    padding-right: 1vw;
+    padding-left: 1vw;
+    font-family: 'Caveat', cursive;
+}
+
+.snow-tricks {
+    color: skyblue;
+    font-size: 3.7vw;
+}
+.snow-tricks2 {
+    color: darkorange;
+    font-size: 3.5vw;
+}
+
+#closex {
+    display: inline-block;
+    float: right;
+    margin-right: 20px;
+    color: whitesmoke;
+}
+
+.img-slot-details {
+    background-color: whitesmoke;
+    height: 140px;
+    width: 250px;
+    margin-top: 10px;
+}
+
+/***************************************
+                NAV
+ **************************************/
+
+#mainNav {
+   /* background-color: snow; */
+    background-color: black;
+    border: none;
+    font-size: 20px;
+}
+
+.navbar-default .navbar-brand {
+   /* color: black; */
+    color: skyblue;
+    font-size: 20px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: snow;
+
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: darkorange;
+
+}
+
+.navbar-toggle {
+    padding: 0 5px;
+    color: snow;
+}
+/*************************************
+              SECTION
+**************************************/
+#trick-index {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+}
+
+#trick-show {
+}
+
+#trick-content {
+}
+
+.trick-codex {
+    margin: 0 15px;
+}
+
+.trick-codex h1 {
+    padding: 5px;
+    font-size: 4em;
+}
+
+/*************************************
+             @MEDIA
+**************************************/
+@media (max-width: 767px) {
+  /*  #img-header, .img-header {
+        margin-top: 0;
+        border-top: 10px solid black;
+    } */
+
+    body {
+        background-color: whitesmoke;
+    }
+}
+
+@media (max-width: 991px) {
+    .trick-cat {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+@media (min-width:460px) {
+    .trick-date, .trick-update {
+        border-left: 15px solid whitesmoke;
+        border-right: 15px solid whitesmoke;
+    }
+}
+
+
+@media (max-width: 460px) {
+    .trick-cat h4, .trick-date h4, .trick-update h4{
+        font-size: 1.1em;
+    }
+    .trick-date, .trick-update {
+        border-left: 1px solid whitesmoke;
+        border-right: 1px solid whitesmoke;
+    }
+}
+
+/*************************************
+             FORM
+**************************************/
+
+.custom-form {
+    margin-top: 50px;
+}
+
+.form-media {
+    padding: 10px;
+    border: 4px solid gray;
+    border-radius: 10px;
+}
+
+/*************************************
+             TRICK
+**************************************/
+
+
+.trick-content {
+    font-family: 'Caveat', cursive;
+}
+
+.trick-name-index {
+    color: black;
+    font-size: 2.3rem;
+    margin-top: 10px;
+    font-family: 'Caveat', cursive;
+}
+
+.trick-name {
+    background-color: white;
+}
+
+.trick-name h1 {
+    padding: 5px;
+    font-size: 4em;
+    color: darkorange;
+    background-color: #313131;
+}
+
+.description {
+    background-color: whitesmoke;
+    margin-top: -22px;
+    margin-bottom: 22px;
+    padding-left: 30px;
+    padding-bottom: 20px;
+    font-size: 1.6em;
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
+.well {
+   /* border-bottom: 3px solid cadetblue; */
+}
+
+.trick-info {
+    background-color: whitesmoke;
+    margin-top: -22px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.trick-date, .trick-cat, .trick-update {
+    background-color: black;
+    font-size: 1.2em;
+}
+
+.trick-date {
+    color: darkorange;
+}
+
+.trick-cat {
+    color: skyblue;
+}
+
+.trick-update {
+    color: whitesmoke;
+}
+
+
+
+/*************************************
+             BTN
+**************************************/
+.btn-edit {
+    background-color: cadetblue;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: skyblue;
+    color: white;
+}
+
+.btn-trash:hover {
+    background-color: black;
+    color: red;
+}
+
+.btn-trash {
+    color: red;
+    background-color: #C9C5C4;
+}
+
+.btn-margin-left {
+    margin-left: 2px;
+}
+
+.ok {
+    background-color: #313131;
+    color: whitesmoke;
+}
+
+.ok:hover {
+    color: darkseagreen;
+}
+
+/*************************************
+             MARGIN
+**************************************/
+
+.margin-top-xl {
+    margin-top: 60px;
+}
+
+/*************************************
+             COMMENTS
+**************************************/
+#comments {
+}
+
+.trick-comments {
+    background-color: whitesmoke;
+    font-family: 'Caveat', cursive;
+    font-size: 1.4em;
+}
+
+.user-comment {
+    padding: 10px;
+
+}
+
+.user-name {
+    padding: 10px;
+    border: 5px solid whitesmoke;
+    background-color: #5eb5e0;
+    text-align: center;
+}
+
+.comment-div {
+    background-color: whitesmoke;
+    margin-bottom: 5px;
+    border-bottom: 5px dotted grey;
+
+}
+
+/*************************************
+             FOOTER
+**************************************/
+
+#footer-text {
+    padding: 20px 0;
+}

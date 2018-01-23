@@ -1,0 +1,56 @@
+{% extends "layout.html.twig" %}
+
+{% block header %}
+    <div class="main-head">
+        <img class="img-header full-img" src="{{ asset('img/pk1.jpg') }}">
+        <div class="text-uppon-img">
+            <p><span class="snow-tricks">
+                {% if is_granted('ROLE_USER') %}
+                    Hello {{ app.user.username }} ! Bien ou .. bien ?
+                {% else %}
+                     Codex Numérique pour Snowboarders</span>
+            {% endif %}
+                <a class="btn btn-xs" id="closex">X</a></p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    {{ include('views/message.html.twig') }}
+    <div class="trick-codex">
+        <h1 class="text-center">Tricks Codex</h1>
+    </div>
+    <section id="trick-index">
+        <div class="flex-div">
+            {% for trick in trickList %}
+                <div class="img-slot">
+                {% set img = trick.images.first %}
+                    <img class="img-responsive image" style="background-image:url({{ img.getUploadDir() ~ "/" ~ img.url }})" alt="{{ img.alt }}" src="{{ img.getUploadDir() ~ "/" ~ img.url }}">
+
+                    <p class="trick-name-index"><a href="{{ path('trick_show', {'name': trick.name }) }}">{{ trick.dbToName }}</a>
+                        <!-- if authorized -->
+                        {% if is_granted('ROLE_USER') %}
+                            <a href="{{ path('trick_delete', {'name': trick.name}) }}" class="pull-right btn-sm btn-margin-left btn-trash"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a href="" class="pull-right btn-sm btn-edit"><i class="glyphicon glyphicon-pencil"></i></a>
+                        {% endif %}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block footer %}
+    <div class="main-head">
+        <img class="img-footer full-img" src="{{ asset('img/snow22.jpg') }}">
+        <div class="text-uppon-img2">
+            <p><span class="snow-tricks2">First SnowTricks Codex Rule : </span><br/>" No stress, no panic... Try again "</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}
