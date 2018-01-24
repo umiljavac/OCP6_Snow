@@ -58,18 +58,15 @@ class TrickController extends Controller
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $imgList = $trick->getImages();
-            foreach ($imgList as $image)
-            {
+            foreach ($imgList as $image) {
                 $image->setTrick($trick);
                 $image->upload();
             }
 
             $videolist = $trick->getVideos();
-            foreach ($videolist as $video)
-            {
+            foreach ($videolist as $video) {
                 $video->setTrick($trick);
             }
 

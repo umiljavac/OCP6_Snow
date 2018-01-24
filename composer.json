@@ -1,5 +1,5 @@
-{   "name": "SnowTricks",
-    "description": "Sixth project of php/symfony openclassrooms cursus",
+{   "name": "snow-tricks",
+    "description": "sixth project of php/symfony openclassrooms cursus",
     "type": "project",
     "license": "proprietary",
     "require": {
