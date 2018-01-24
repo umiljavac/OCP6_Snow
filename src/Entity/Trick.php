@@ -209,6 +209,4 @@ class Trick
     {
         return ucfirst(str_replace('-', ' ', $this->name));
     }
-
-
 }

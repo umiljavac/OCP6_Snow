@@ -6,7 +6,7 @@
  * Time: 09:43
  */
 
-namespace App\Form;
+namespace App\Form\Type;
 
 
 use App\Entity\Video;

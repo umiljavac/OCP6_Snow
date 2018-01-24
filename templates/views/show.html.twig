@@ -59,10 +59,11 @@
         {{ include('views/commentScratchForm.html.twig') }}
     {% endif %}
     <section id="comments">
-    {% for comment in trick.comments %}
         <div class="container">
             <div class="row trick-comments">
-                <div class="comment-div col-md-offset-2 col-md-8 col-sm-12">
+                {% for comment in trick.comments %}
+
+                <div class="comment-div col-md-offset-2 col-md-8 col-xs-12">
                     <div class="row">
                         <div class="col-xs-2 user-name">
                             <p>{{ comment.user.username }}</p>
@@ -75,9 +76,10 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+
             </div>
         </div>
-    {% endfor %}
     </section>
 {% endblock %}
 

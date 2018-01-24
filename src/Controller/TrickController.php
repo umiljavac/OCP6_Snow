@@ -12,9 +12,9 @@ use App\Entity\Comment;
 use App\Entity\Image;
 use App\Entity\Trick;
 use App\Entity\Video;
-use App\Form\CommentType;
-use App\Form\ImageType;
-use App\Form\TrickType;
+use App\Form\Type\CommentType;
+use App\Form\Type\ImageType;
+use App\Form\Type\TrickType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -56,7 +56,6 @@ class TrickController extends Controller
     {
         $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
@@ -78,12 +77,9 @@ class TrickController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($trick);
             $em->flush();
-
             $this->addFlash('notice', 'La figure a bien été ajoutée');
-
             return $this->redirectToRoute('home');
         }
-
         return $this->render('views/add.html.twig', array('form' => $form->createView()));
     }
 
@@ -104,7 +100,6 @@ class TrickController extends Controller
             throw new NotFoundHttpException("La figure ".$trick->getName()." n'existe pas.");
         }
         $em = $this->getDoctrine()->getManager();
-
         // on va faire ça ici pr l'instant, il faudra créer un service pour nettoyer les fichiers de photos
         $imageList = $trick->getImages();
         foreach ($imageList as $image)
@@ -112,7 +107,6 @@ class TrickController extends Controller
             $ulpoadDir = $image->getUploadRootDir();
             unlink($ulpoadDir . '/' . $image->getUrl());
         }
-        //////
         $em->remove($trick);
         $em->flush();
 
@@ -143,5 +137,4 @@ class TrickController extends Controller
         }
        return $this->redirectToRoute('trick_show', array('name' => $trick->getName()));
     }
-
 }

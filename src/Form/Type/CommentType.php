@@ -6,7 +6,7 @@
  * Time: 15:02
  */
 
-namespace App\Form;
+namespace App\Form\Type;
 
 
 use App\Entity\Comment;

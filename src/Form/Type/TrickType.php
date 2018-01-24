@@ -6,7 +6,7 @@
  * Time: 17:24
  */
 
-namespace App\Form;
+namespace App\Form\Type;
 
 
 use App\Entity\Image;

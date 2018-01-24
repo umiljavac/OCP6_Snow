@@ -1,4 +1,5 @@
-{
+{   "name": "SnowTricks",
+    "description": "Sixth project of php/symfony openclassrooms cursus",
     "type": "project",
     "license": "proprietary",
     "require": {

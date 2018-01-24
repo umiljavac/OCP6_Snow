@@ -6,7 +6,7 @@
  * Time: 19:52
  */
 
-namespace App\Form;
+namespace App\Form\Type;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
