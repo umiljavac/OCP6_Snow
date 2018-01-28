@@ -219,10 +219,65 @@ a {
 
 .form-media {
     padding: 10px;
-    border: 4px solid gray;
-    border-radius: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #313131;;
 }
 
+#add_image:hover {
+    background-color: #313131;
+    color: skyblue;
+}
+
+#add_video:hover {
+    background-color: #313131;
+    color: darkorange;
+}
+#trick_name {
+}
+
+#trick_trickGroup {
+
+}
+
+#trick_description {
+}
+
+#trick_images {
+    color: skyblue;
+}
+
+#trick_images .form-group {
+}
+
+#trick_videos {
+    color: darkorange;
+    display: block;
+
+}
+
+.form-media-up {
+    padding: 3px;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.img-form {
+}
+
+.image-form {
+
+    height: 140px;
+    width: 200px;
+    border : 3px solid black;
+    margin: auto;
+}
+.form-media-up label {
+    display: none;
+}
 /*************************************
              TRICK
 **************************************/
@@ -399,4 +454,34 @@ a {
 
 #footer-text {
     padding: 20px 0;
+}
+
+/*************************************
+             FONT
+**************************************/
+
+.font-caveat {
+    font-family: 'Caveat', cursive;
+    font-size: 2em;
+}
+.font-caveat-sm {
+    font-family: 'Caveat', cursive;
+    font-size: 1em;
+    height: 50px;
+}
+
+.font-marker {
+    font-family: 'Permanent Marker', cursive;
+}
+
+.font-bangers {
+    font-family: 'Bangers', cursive;
+}
+
+.font-indy {
+    font-family: 'Indie Flower', cursive;
+}
+
+.font-helvetica {
+    font-family: 'Helvetica Neue', sans-serif;
 }

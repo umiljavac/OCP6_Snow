@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var $container = $('div#trick_images');
     var indexI = $container.find(':input').length;
+
     $('#add_image').click(function(e) {
         addImage($container);
         e.preventDefault();
@@ -22,6 +23,7 @@ $(document).ready(function() {
         addDeleteLink($prototype);
         $container.append($prototype);
         indexI++;
+
     }
     function addDeleteLink($prototype) {
         var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
@@ -34,54 +36,113 @@ $(document).ready(function() {
     }
 });
 $(document).ready(function() {
-    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $container = $('div#trick_videos');
-    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
     var index = $container.find(':input').length;
-    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('#add_video').click(function(e) {
         addVideo($container);
-        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+        e.preventDefault();
         return false;
     });
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
     if (index === 0) {
         addVideo($container);
     } else {
-        // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
         $container.children('div').each(function() {
             addDeleteLink($(this));
         });
     }
-    // La fonction qui ajoute un formulaire CategoryType
     function addVideo($container) {
-        // Dans le contenu de l'attribut « data-prototype », on remplace :
-        // - le texte "__name__label__" qu'il contient par le label du champ
-        // - le texte "__name__" qu'il contient par le numéro du champ
         var template = $container.attr('data-prototype')
             .replace(/__name__label__/g, 'Vidéo n°' + (index+1))
             .replace(/__name__/g,        index)
         ;
-        // On crée un objet jquery qui contient ce template
         var $prototype = $(template);
-        // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
         addDeleteLink($prototype);
-        // On ajoute le prototype modifié à la fin de la balise <div>
         $container.append($prototype);
-        // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
         index++;
     }
-    // La fonction qui ajoute un lien de suppression d'une catégorie
     function addDeleteLink($prototype) {
-        // Création du lien
         var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-        // Ajout du lien
         $prototype.append($deleteLink);
-        // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
         $deleteLink.click(function(e) {
             $prototype.remove();
-            e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+            e.preventDefault();
             return false;
         });
+    }
+});
+
+$(document).ready(function() {
+    var imgs = $('.img-form');
+    var counter = imgs.length;
+    for (var i = 0; i < imgs.length; i++)
+    {
+       var formElement = $('#trick_images_'+ i + '_file');
+       formElement.after(imgs[i]);
+       formElement.hide();
+
+       var divElement = $('#trick_images_' + i);
+       divElement.find('label').hide();
+       divElement.prev().text('Image n° ' + (i + 1));
+    }
+
+    $("label[for='trick_images_0_file']").hide();
+    var add = $('#add_image');
+    add.click(function () {
+        $('#trick_images_' + counter +'_file').prev().hide();
+        var $container = $('div#trick_images');
+        var indexI = $container.find('input').length;
+        for (var i = 0; i <= indexI; i++ )
+        {
+            $("label[for='trick_images_" + i + "_file']").hide();
+        }
+        counter++;
+    })
+});
+
+$(document).ready(function() {
+    var videos = $('#trick_videos');
+    nbVideos = videos.find('input').length;
+    var counter = nbVideos;
+
+    for (var i = 0; i < nbVideos; i++)
+    {
+        var divElement = $('#trick_videos_' + i);
+        divElement.find('label').hide();
+        divElement.prev().text('Video n° ' + (i + 1));
+    }
+
+    var add = $('#add_video');
+    add.click(function () {
+        $('#trick_videos_' + counter +'_link').prev().hide();
+        counter++;
+    });
+
+    var videoThumb = $('.video-thumb');
+    for (var x = 0; x < videoThumb.length; x++)
+    {
+        var imgThumb = $(videoThumb[x]).find('img');
+        var linkVideo = imgThumb.attr("src");
+        var linkThumb = replaceLink(linkVideo);
+        imgThumb.attr("src", linkThumb);
+        var formElt = $('#trick_videos_' + x);
+        formElt.after(videoThumb[x]);
+    }
+
+    function replaceLink(link) {
+        var re = new RegExp("youtube");
+        var re1 = new RegExp("dailymotion");
+        if (re.test(link) === true)
+        {
+            /\/embed\/([a-zA-Z0-9_]+)/.exec(link);
+            var linkEltY = RegExp.$1;
+            return "https://img.youtube.com/vi/" + linkEltY + "/hqdefault.jpg"
+
+        }
+        if (re1.test(link) === true)
+        {
+            /\/video\/([a-zA-Z0-9_]+)/.exec(link);
+            var linkEltD = RegExp.$1;
+            return "https://www.dailymotion.com/thumbnail/video/" + linkEltD;
+        }
     }
 });

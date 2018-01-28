@@ -2,13 +2,18 @@
 
 namespace App\Entity;
 
+use App\Service\StringConverter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraint as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TrickRepository")
+ * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(fields="name", message="une figure éxiste déjà avec ce nom !")
  */
 class Trick
 {
@@ -21,6 +26,8 @@ class Trick
 
     /**
      * @ORM\Column(type="string", length=100, unique=true)
+     * @Assert\Length(min="2")
+     * @Assert\NotBlank(message="Un p'tit nom pour la figure ?")
      */
     private $name;
 
@@ -32,21 +39,28 @@ class Trick
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Et la description ? bah Alors ?!")
      */
     private $description;
 
     /**
      * @ORM\Column(name="creation_date", type="date")
+     * @Assert\DateTime()
      */
     private $date;
 
     /**
      * @ORM\Column(name="update_date", type="date", nullable=true)
+     * @Assert\DateTime()
      */
     private $updateDate;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="trick", cascade={"persist"}, orphanRemoval=true)
+     * @Assert\Count(
+     *     min="1",
+     *     minMessage="Il faut au moins une photo par figure :)"
+     * )
      */
     private $images;
 
@@ -89,7 +103,7 @@ class Trick
      */
     public function setName($name): void
     {
-        $this->name = $this->nameToDb($name);
+        $this->name = $this->nameToDb(new StringConverter(), $name);
     }
 
     /**
@@ -167,11 +181,18 @@ class Trick
     /**
      * @param Image $image
      */
-
     public function addImage(Image $image)
     {
         $this->images[] = $image;
-       // $image->setTrick($this);
+        $image->setTrick($this);
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function removeImage(Image $image)
+    {
+        $this->images->removeElement($image);
     }
 
     public function getVideos()
@@ -179,9 +200,21 @@ class Trick
         return $this->videos;
     }
 
+    /**
+     * @param Video $video
+     */
     public function addVideo(Video $video)
     {
         $this->videos[] = $video;
+        $video->setTrick($this);
+    }
+
+    /**
+     * @param Video $video
+     */
+    public function removeVideo(Video $video)
+    {
+        $this->videos->removeElement($video);
     }
 
     /**
@@ -200,13 +233,19 @@ class Trick
         $this->comments[] = $comments;
     }
 
-    public function nameToDb($name)
+    public function nameToDb(StringConverter $stringConverter, $name)
     {
-        return strtolower(str_replace(' ', '-', $name));
+        $name = $stringConverter->stringToLowerNoAccent($name);
+        return str_replace(' ', '-', $name);
     }
 
     public function dbToName()
     {
         return ucfirst(str_replace('-', ' ', $this->name));
+    }
+
+    public function updated()
+    {
+        $this->setUpdateDate(new \DateTime());
     }
 }
