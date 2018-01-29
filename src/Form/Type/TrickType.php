@@ -10,6 +10,7 @@ namespace App\Form\Type;
 
 
 use App\Entity\Image;
+use App\Entity\Trick;
 use App\Entity\TrickGroup;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -19,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TrickType extends AbstractType
 {
@@ -35,13 +37,22 @@ class TrickType extends AbstractType
                'entry_type' => ImageType::class,
                'required' => false,
                'allow_add' => true,
-               'allow_delete' => true))
+               'allow_delete' => true,
+               'by_reference' => false))
            ->add('videos', CollectionType::class, array(
                'entry_type' => VideoType::class,
                   'required' => false,
                   'allow_add' => true,
-                  'allow_delete' => true))
+                  'allow_delete' => true,
+                  'by_reference' => false))
             ->add('enregistrer', SubmitType::class)
             ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => Trick::class
+        ));
     }
 }

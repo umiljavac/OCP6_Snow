@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
@@ -30,6 +32,7 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="bah alors, à court d'inspiration ?")
      */
     private $content;
 
@@ -41,7 +44,6 @@ class Comment
     public function __construct()
     {
         $this->date = new \DateTime();
-      /*  $this->user = $this->getUser(); */
     }
 
     public function getId()

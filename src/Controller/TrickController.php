@@ -15,6 +15,8 @@ use App\Entity\Video;
 use App\Form\Type\CommentType;
 use App\Form\Type\ImageType;
 use App\Form\Type\TrickType;
+use App\Service\UploadedImgCleaner;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -42,8 +44,7 @@ class TrickController extends Controller
     {
         if(!$trick)
         {
-            throw $this->createNotFoundException('La figure n\'éxiste pas'); // équivaut à la ligne du dessous
-            // throw new NotFoundHttpException('La figure n\'éxiste pas');
+            throw $this->createNotFoundException('La figure n\'éxiste pas');
         }
         return $this->render('views/show.html.twig', array('trick' => $trick));
     }
@@ -59,16 +60,6 @@ class TrickController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $imgList = $trick->getImages();
-            foreach ($imgList as $image) {
-                $image->setTrick($trick);
-                $image->upload();
-            }
-
-            $videolist = $trick->getVideos();
-            foreach ($videolist as $video) {
-                $video->setTrick($trick);
-            }
 
             $trick = $form->getData();
             $em = $this->getDoctrine()->getManager();
@@ -83,27 +74,39 @@ class TrickController extends Controller
     /**
      * @Route("/trick/{name}/update", name="trick_update")
      */
-    public function updateTrickAction()
+    public function updateTrickAction(Trick $trick, Request $request, UploadedImgCleaner $uploadedImgCleaner)
     {
+        $em = $this->getDoctrine()->getManager();
+        if(!$trick) {
+            throw $this->createNotFoundException('La figure n\'éxiste pas');
+        }
+        $oldImgUrls = $uploadedImgCleaner->getOldImgUrls($trick);
 
+        $form = $this->createForm(TrickType::class, $trick);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $uploadedImgCleaner->cleanImgFile($oldImgUrls, $trick);
+            $trick->updated();
+            $em->flush();
+            $this->addFlash('notice', 'Les modifs ont bien été prises en compte !:)');
+            return $this->redirectToRoute('trick_show', array('name' => $trick->getName()));
+        }
+        return $this->render('views/update.html.twig', array('trick' => $trick, 'form' => $form->createView()));
     }
 
     /**
      * @Route("/trick/{name}/delete", name="trick_delete")
      */
-    public function deleteTrickAction(Trick $trick, Request $request)
+    public function deleteTrickAction(Trick $trick, UploadedImgCleaner $uploadedImgCleaner)
     {
         if (null === $trick) {
             throw new NotFoundHttpException("La figure ".$trick->getName()." n'existe pas.");
         }
         $em = $this->getDoctrine()->getManager();
-        // on va faire ça ici pr l'instant, il faudra créer un service pour nettoyer les fichiers de photos
-        $imageList = $trick->getImages();
-        foreach ($imageList as $image)
-        {
-            $ulpoadDir = $image->getUploadRootDir();
-            unlink($ulpoadDir . '/' . $image->getUrl());
-        }
+
+        $uploadedImgCleaner->deleteTrickImg($trick);
+
         $em->remove($trick);
         $em->flush();
 
@@ -130,7 +133,7 @@ class TrickController extends Controller
             $em->persist($comment);
             $em->flush();
 
-            $this->addFlash('notice', 'Votre commentaire a bien été ajouté');
+            $this->addFlash('notice', 'Et un commentaire, un ! Good Job !');
         }
        return $this->redirectToRoute('trick_show', array('name' => $trick->getName()));
     }

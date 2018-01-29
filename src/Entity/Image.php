@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraint as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Image
 {
@@ -91,7 +92,6 @@ class Image
     public function setTrick(Trick $trick): void
     {
         $this->trick = $trick;
-        //$trick->addImage($this);
     }
 
     /**
@@ -110,12 +110,19 @@ class Image
         $this->file = $file;
     }
 
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
     public function upload()
     {
-        $fileName = md5(uniqid()).'.'.$this->file->guessExtension();
-        $this->url = $fileName;
-        $this->alt = 'Image d\'un : ' . $this->trick->getName();
-        $this->file->move($this->getUploadRootDir(), $fileName );
+        if(!$this->id)
+        { // si l'image existe
+            $fileName = md5(uniqid()) . '.' . $this->file->guessExtension();
+            $this->url = $fileName;
+            $this->alt = 'Image d\'un : ' . $this->trick->getName();
+            $this->file->move($this->getUploadRootDir(), $fileName);
+        }
     }
 
     public function getUploadRootDir()

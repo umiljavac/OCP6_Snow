@@ -21,3 +21,13 @@
 iframe {
     margin-top: 15px;
 }
+
+.img-slot-form {
+    position: relative;
+    background-color: transparent;
+    height: 150px;
+}
+
+.new-img-field {
+
+}
