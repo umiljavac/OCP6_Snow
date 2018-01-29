@@ -127,7 +127,6 @@ a {
 }
 
 .navbar-default .navbar-brand {
-   /* color: black; */
     color: skyblue;
     font-size: 20px;
 }
@@ -156,13 +155,14 @@ a {
 }
 
 #trick-show {
+    padding: 10px;
 }
 
 #trick-content {
 }
 
 .trick-codex {
-    margin: 0 15px;
+    margin: -20px 0 15px;
 }
 
 .trick-codex h1 {
@@ -227,14 +227,28 @@ a {
     background-color: #313131;;
 }
 
+.form-h1 {
+    padding: 5px;
+    font-size: 4em;
+    color: darkseagreen;
+    background-color: #313131;
+}
+
+#add_image {
+    color: skyblue;
+}
+
 #add_image:hover {
     background-color: #313131;
     color: skyblue;
 }
 
+#add_video {
+    color: darkorange;
+}
+
 #add_video:hover {
     background-color: #313131;
-    color: darkorange;
 }
 #trick_name {
 }
@@ -257,6 +271,23 @@ a {
     color: darkorange;
     display: block;
 
+}
+
+#trick_enregistrer {
+    margin-top: 0px;
+    width: 80%;
+    margin-left: 10%;
+    height: 60px;
+    font-size: 2em;
+    font-family: 'Monoton', cursive;
+    color: darkseagreen;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#trick_enregistrer:hover {
+    background-color: #313131;
+    color: darkseagreen;
 }
 
 .form-media-up {
@@ -295,7 +326,7 @@ a {
 }
 
 .trick-name {
-    background-color: white;
+    margin: 20px 0;
 }
 
 .trick-name h1 {
@@ -307,7 +338,7 @@ a {
 
 .description {
     background-color: whitesmoke;
-    margin-top: -22px;
+  /*  margin-top: -22px; */
     margin-bottom: 22px;
     padding-left: 30px;
     padding-bottom: 20px;
@@ -398,6 +429,8 @@ a {
 .margin-h-md {
     margin: 30px 0;
 }
+
+
 
 /*************************************
              COMMENTS

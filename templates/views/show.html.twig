@@ -8,7 +8,7 @@
 
 {% block body %}
     <section id="trick-show">
-        <div class="container">
+        <div id="trick-title" class="container">
             <div class="trick-name row">
                 <h1 class="text-center ws-lg">{{ trick.dbToName }}</h1>
             </div>
@@ -56,7 +56,7 @@
     </section>
     {% if is_granted('ROLE_USER') %}
         {{ include('views/message.html.twig') }}
-        {{ include('views/commentScratchForm.html.twig') }}
+        {{ include('views/commentForm.html.twig') }}
     {% endif %}
     <section id="comments">
         <div class="container">
