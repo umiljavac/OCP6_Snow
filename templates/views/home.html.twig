@@ -13,11 +13,12 @@
                 <a class="btn btn-xs" id="closex">X</a></p>
         </div>
     </div>
-
 {% endblock %}
 
 {% block body %}
     {{ include('views/message.html.twig') }}
+    <p id="tricks-anchor"></p>
+
     <div class="trick-codex">
         <h1 class="text-center">Tricks Codex</h1>
     </div>
@@ -26,13 +27,13 @@
             {% for trick in trickList %}
                 <div class="img-slot">
                 {% set img = trick.images.first %}
-                    <img class="img-responsive image" style="background-image:url({{ img.getUploadDir() ~ "/" ~ img.url }})" alt="{{ img.alt }}" src="{{ img.getUploadDir() ~ "/" ~ img.url }}">
+                    <a href="{{ path('trick_show', {'name': trick.name }) }}"><img class="img-responsive image" style="background-image:url({{ img.getUploadDir() ~ "/" ~ img.url }})" alt="{{ img.alt }}" src="{{ img.getUploadDir() ~ "/" ~ img.url }}"></a>
 
                     <p class="trick-name-index"><a href="{{ path('trick_show', {'name': trick.name }) }}">{{ trick.dbToName }}</a>
                         <!-- if authorized -->
                         {% if is_granted('ROLE_USER') %}
                             <a href="{{ path('trick_delete', {'name': trick.name}) }}" class="pull-right btn-sm btn-margin-left btn-trash"><i class="glyphicon glyphicon-trash"></i></a>
-                            <a href="{{ path('trick_update', {'name': trick.name}) }}" class="pull-right btn-sm btn-edit"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="{{ path('trick_update', {'name': trick.name}) }}" class="pull-right btn-sm btn-edit"><i class="glyphicon glyphicon-edit"></i></a>
                         {% endif %}
                     </p>
                 </div>
@@ -52,5 +53,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/align.js') }}"></script>
 {% endblock %}

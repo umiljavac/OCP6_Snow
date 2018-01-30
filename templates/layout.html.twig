@@ -34,12 +34,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#trick-index">Tricks</a>
+                    <a href="/home#tricks-anchor">Tricks</a>
                 </li>
                 {% if is_granted('ROLE_USER') %}
-                <li>
-                    <a href="{{ path('trick_add') }}">Nouveau Trick</a>
-                </li>
                 <li>
                     <a href="{{ path('logout') }}">Déconnexion</a>
                 </li>
@@ -54,9 +51,21 @@
 </nav>
 <div id="header">
     {% block header %}
+
     {% endblock %}
 </div>
 
+{% if is_granted('ROLE_USER') %}
+    <aside id="menu">
+        {% if (app.request.get('_route') == 'trick_show') %}
+        <a href="{{ path('trick_update', {'name': trick.name}) }}"><div id="menu-edit"><i class="glyphicon text-center glyphicon-edit"></i></div></a>
+        {% endif %}
+        <a href="{{ path('trick_add') }}"><div id="menu-add"><i class="glyphicon text-center glyphicon-pencil"></i></div></a>
+        <div id="menu-user"><i class="glyphicon text-center glyphicon-sunglasses"></i></div>
+        <a href="{{ path('home') }}"><div id="menu-home"><i class="glyphicon text-center glyphicon-home"></i></div></a>
+        <div id="menu-plus" class="trigger-off"><i class="glyphicon text-center glyphicon-plus"></i></div>
+    </aside>
+{% endif %}
     {% block body %}
     {% endblock %}
 
@@ -78,6 +87,7 @@
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/menu.js') }}"></script>
 {% endblock %}
 
 </body>

@@ -10,21 +10,6 @@ $(document).ready(function () {
         $(window).resize(function() {
             centerBlocks();
         });
-
-    $('.image').click(function() {
-        var imgClone = $(this).clone();
-        $(".flex-div").hide();
-        imgClone.addClass("image-full");
-        var zoomDiv = $("<div class='zoom-div'></div>");
-        zoomDiv.append(imgClone);
-        $('#trick-title').append(zoomDiv);
-
-        $(imgClone).click(function() {
-            zoomDiv.remove();
-            $(".flex-div").show();
-            centerBlocks();
-        });
-    });
 });
 
 function centerBlocks() {
@@ -43,10 +28,15 @@ function centerBlocks() {
         imgBlocksByRow = imgBlocksNb;
     }
     var marginDisp = divFlexW - ( imgBlocksByRow * imgBlockW);
-    var marginBlock = marginDisp / imgBlocksByRow;
     var centerBlock = marginDisp / (imgBlocksByRow + 1);
 
     for (var i = 0; i < imgBlocksNb; i++) {
         imgBlocks[i].style.marginLeft = String(centerBlock) + 'px';
     }
+}
+
+function showMenu() {
+    $('.glyphicon-plus').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    $('#menu-add, #menu-user').css("display","flex");
+    $('')
 }
