@@ -127,7 +127,6 @@ a {
 }
 
 .navbar-default .navbar-brand {
-   /* color: black; */
     color: skyblue;
     font-size: 20px;
 }
@@ -156,13 +155,14 @@ a {
 }
 
 #trick-show {
+    padding: 10px;
 }
 
 #trick-content {
 }
 
 .trick-codex {
-    margin: 0 15px;
+    margin: -20px 0 15px;
 }
 
 .trick-codex h1 {
@@ -227,14 +227,28 @@ a {
     background-color: #313131;;
 }
 
+.form-h1 {
+    padding: 5px;
+    font-size: 4em;
+    color: darkseagreen;
+    background-color: #313131;
+}
+
+#add_image {
+    color: skyblue;
+}
+
 #add_image:hover {
     background-color: #313131;
     color: skyblue;
 }
 
+#add_video {
+    color: darkorange;
+}
+
 #add_video:hover {
     background-color: #313131;
-    color: darkorange;
 }
 #trick_name {
 }
@@ -257,6 +271,23 @@ a {
     color: darkorange;
     display: block;
 
+}
+
+#trick_enregistrer {
+    margin-top: 0px;
+    width: 80%;
+    margin-left: 10%;
+    height: 60px;
+    font-size: 2em;
+    font-family: 'Monoton', cursive;
+    color: darkseagreen;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#trick_enregistrer:hover {
+    background-color: #313131;
+    color: darkseagreen;
 }
 
 .form-media-up {
@@ -295,7 +326,7 @@ a {
 }
 
 .trick-name {
-    background-color: white;
+    margin: 20px 0;
 }
 
 .trick-name h1 {
@@ -307,7 +338,7 @@ a {
 
 .description {
     background-color: whitesmoke;
-    margin-top: -22px;
+  /*  margin-top: -22px; */
     margin-bottom: 22px;
     padding-left: 30px;
     padding-bottom: 20px;
@@ -399,6 +430,8 @@ a {
     margin: 30px 0;
 }
 
+
+
 /*************************************
              COMMENTS
 **************************************/
@@ -485,3 +518,148 @@ a {
 .font-helvetica {
     font-family: 'Helvetica Neue', sans-serif;
 }
+
+/*************************************
+             ASIDE MENU
+**************************************/
+
+#menu {
+    z-index: 2;
+    font-size: 20px;
+    background-color: transparent;
+    position: fixed;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    right: 1%;
+    bottom: 7%;
+}
+
+#menu-plus, #menu-add, #menu-user, #menu-home, #menu-edit {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    opacity: 1;
+    display: flex;
+}
+
+#menu-plus {
+    background-color: black;
+}
+
+#menu-plus:hover, #menu-add:hover, #menu-user:hover, #menu-home:hover, #menu-edit:hover {
+    background-color: whitesmoke;
+    border: 4px solid black;
+}
+
+#menu-add {
+    background-color: black;
+    display: none;
+}
+
+#menu-user {
+    background-color: black;
+    display: none;
+}
+
+#menu-home {
+    background-color: black;
+    display: none;
+}
+
+#menu-edit {
+    background-color: black;
+    display: none;
+}
+
+.glyphicon-plus {
+    color: darkorange;
+    margin: auto;
+    padding-bottom: 3px;
+    padding-left: 1px;
+}
+
+.glyphicon-minus {
+    color: darkorange;
+    margin: auto;
+    padding-bottom: 3px;
+    padding-right: 2px;
+}
+
+.glyphicon-home {
+    color: palevioletred;
+    margin: auto;
+    padding-bottom: 3px;
+    padding-right: 2px;
+}
+
+.glyphicon-pencil {
+    color: skyblue;
+    margin: auto;
+}
+
+.glyphicon-sunglasses {
+    color: darkseagreen;
+    margin: auto;
+    padding-bottom: 3px;
+    padding-left: 2px;
+}
+
+.glyphicon-edit {
+    color: #ffcc00;
+    margin: auto;
+    padding-bottom: 2px;
+}
+
+.modal {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #313131;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    font-family: 'Caveat', cursive;
+    font-size: 2em;
+    color: whitesmoke;
+}
+
+.close-span {
+    float: right;
+    color: darkorange;
+    cursor: pointer;
+}
+
+.close-span, #delete-trick-modal {
+    font-weight: bold;
+    font-size: 1em;
+    opacity: 1;
+}
+
+.close-span:hover,
+.close-span:focus,
+#delete-trick-modal:hover,
+#delete-trick-modal:focus {
+    color: black;
+    opacity: 1;
+}
+
+#delete-trick-modal {
+    color: skyblue;
+}
+

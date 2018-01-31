@@ -1,17 +1,10 @@
-
 <div class="well custom-form col-md-offset-2 col-md-8 col-sm-12">
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
-
-    <div class="form-group margin-top">
-        {{ form_label(form.content, "Laisser un commentaire") }}
-        {{ form_errors(form.content) }}
-        <div>
-            {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+    <form action="{{ path('trick_comment', {'name': trick.name}) }}" method="post">
+        <legend class="ws-md">Ajouter un commentaire</legend>
+        <div class="form-group">
+            <label for="content">Rider's comment : </label>
+            <textarea id="content" type="textarea" name="content" class="form-control font-helvetica" rows="6"></textarea>
         </div>
-    </div>
-    <div class="form-group margin-top">
-        {{ form_widget(form.ok, {'attr': {'class': 'btn btn-primary ok'}}) }}
-    </div>
-{{ form_end(form) }}
+        <button class="btn ok" type="submit">Ok</button>
+    </form>
 </div>

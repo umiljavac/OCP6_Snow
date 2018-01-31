@@ -14,8 +14,12 @@
 .image {
     height: 140px;
     width: 200px;
-    border : 3px solid black;
+    border: 3px solid black;
     margin-top: 15px;
+}
+
+#trick-show .image:hover {
+    box-shadow: 0 0 3px 1px #313131;
 }
 
 iframe {
@@ -30,4 +34,19 @@ iframe {
 
 .new-img-field {
 
+}
+
+.image-full {
+    width: auto;
+    height: auto;
+    margin: 15px 0 45px 0;
+
+}
+
+.zoom-div {
+    width: auto;
+    height: auto;
+    margin: auto;
+    display: flex;
+    justify-content: center;
 }

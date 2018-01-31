@@ -24,21 +24,24 @@
             {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '10'}}) }}
         </div>
     </div>
-
+    <hr>
     <div class="form-group margin-top">
         {{ form_row(form.images, {'attr': {'class': 'form-media'}}) }}
-            {% if app.request.get('_route') == 'trick_update' %}
-                {% for image in trick.images %}
-                    <div class="img-slot-form form-group form-media-up img-form">
-                        <div class="photo">
-                            <img class="img-responsive image-form" style="background-image:url({{ "../" ~ image.getUploadDir() ~ "/" ~ image.url }})" alt="{{ image.alt }}" src="{{ "../../" ~ image.getUploadDir() ~ "/" ~ image.url }}">
-                        </div>
+        {% if app.request.get('_route') == 'trick_update' %}
+            {% for image in trick.images %}
+                <div class="img-slot-form form-group form-media-up img-form">
+                    <div class="photo">
+                        <img class="img-responsive image-form" style="background-image:url({{ "../" ~ image.getUploadDir() ~ "/" ~ image.url }})" alt="{{ image.alt }}" src="{{ "../../" ~ image.getUploadDir() ~ "/" ~ image.url }}">
                     </div>
-                {% endfor %}
-            {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
         <a href="#" id="add_image" class="btn btn-default">Ajouter une image</a>
     </div>
-
+    <hr>
+    <div class="video-info form-group">
+        <p class="p-video-info">Dans la barre de votre navigateur, copiez l'adresse de la vidéo que vous voulez partager puis collez-là dans un champs vidéo. Fonctionne avec Youtube et Dailymotion.</p>
+    </div>
     <div class="form-group margin-top">
         {{ form_row(form.videos, {'attr': {'class': 'form-media'}}) }}
         {% if app.request.get('_route') == 'trick_update' %}
@@ -50,8 +53,15 @@
         {% endif %}
         <a href="#" id="add_video" class="btn btn-default">Ajouter une vidéo</a>
     </div>
+    <hr>
     <div class="form-group margin-top">
         {{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
     </div>
+    {% if app.request.get('_route') == 'trick_update' %}
+        <div class="form-group text-center">
+            <hr>
+            <a href="{{ path('trick_delete', {'name': trick.name}) }}" class="btn btn-margin-left btn-trash"><i class="glyphicon glyphicon-trash"></i> Supprimer la figure <i class="glyphicon glyphicon-trash"></i></a>
+        </div>
+    {% endif %}
     {{ form_end(form) }}
 </div>

@@ -1,9 +1,15 @@
 {% extends "layout.html.twig" %}
 
 {% block body %}
+    <section id="trick-add">
+        <div class="container">
+            <div class="row margin-top-xl">
+                <h1 class="form-h1 text-center ws-lg">Update Trick</h1>
+            </div>
+        </div>
 
-    {{ include('views/updateFormAlt.html.twig') }}
-
+        {{ include('views/trickForm.html.twig') }}
+    </section>
 {% endblock %}
 
 {% block javascripts %}

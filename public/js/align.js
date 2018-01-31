@@ -28,10 +28,15 @@ function centerBlocks() {
         imgBlocksByRow = imgBlocksNb;
     }
     var marginDisp = divFlexW - ( imgBlocksByRow * imgBlockW);
-    var marginBlock = marginDisp / imgBlocksByRow;
     var centerBlock = marginDisp / (imgBlocksByRow + 1);
 
     for (var i = 0; i < imgBlocksNb; i++) {
         imgBlocks[i].style.marginLeft = String(centerBlock) + 'px';
     }
+}
+
+function showMenu() {
+    $('.glyphicon-plus').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    $('#menu-add, #menu-user').css("display","flex");
+    $('')
 }
