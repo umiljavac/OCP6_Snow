@@ -10,7 +10,7 @@
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-        <div class="well">
+        <div class="well font-helvetica">
             <div class="row">
                 <form class="custom-form col-md-offset-2 col-md-8 col-sm-12" action="{{ path('login') }}" method="post">
                     <div class="form-group">
@@ -28,7 +28,7 @@
                         <input type="hidden" name="_target_path" value="/account" />
                     #}
                  <div class="form-group">
-                    <button type="submit">connexion</button>
+                    <button class="btn btn-primary" type="submit">connexion</button>
                  </div>
                 </form>
 

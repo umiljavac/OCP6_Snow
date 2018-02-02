@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row margin-top-xl">
+            <h1 class="form-h1 text-center ws-lg">Edition du profil</h1>
+        </div>
+        <div class="row margin-top-md">
+            <h2 class="text-center ws-md">Avatar actuel</h2>
+        </div>
+    </div>
+
+    <div class="flex-avatar margin-top-md">
+    {% set avatar = userProfile.avatar %}
+    {% if avatar != null %}
+            <img class="avatar-thumb" src="{{ "../" ~ userProfile.avatar.getUploadDir() ~ "/" ~ userProfile.avatar.url }}">
+        {% else %}
+            <img class="avatar-thumb" src="{{ asset('img/avatar.png')}}">
+    {% endif %}
+            </div>
+
+    <div class="well custom-form col-md-offset-2 col-md-8 col-sm-12 font-helvetica">
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_errors(form) }}
+
+        <div class="form-group margin-top">
+            {{ form_row(form.avatar, {'attr': {'class': 'form-avatar'}}) }}
+        </div>
+
+        <div class="form-group margin-top">
+            {{ form_label(form.infos, "Infos, trucs, machins te concernant (gogogo !)") }}
+            {{ form_errors(form.infos) }}
+            <div>
+                {{ form_widget(form.infos, {'attr': {'class': 'form-control', 'rows': '10'}}) }}
+            </div>
+        </div>
+        <hr>
+        <div class="form-group margin-top">
+            {{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

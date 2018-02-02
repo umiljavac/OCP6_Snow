@@ -1,5 +1,4 @@
 body {
-    /* background-color: #C9C5C4; */
     background-color: white;
     font-family: 'Monoton', cursive;
 }
@@ -67,7 +66,6 @@ a {
 
 .text-uppon-img {
     text-align: center;
-   /* background-color: rgba(88, 244, 233, 0.2); */
     background-color: rgba(23, 24, 23, 0.4);
     border: none !important;
     position: absolute;
@@ -120,7 +118,6 @@ a {
  **************************************/
 
 #mainNav {
-   /* background-color: snow; */
     background-color: black;
     border: none;
     font-size: 20px;
@@ -131,14 +128,16 @@ a {
     font-size: 20px;
 }
 
+.navbar-default .navbar-brand:hover {
+    color: darkorange;
+}
+
 .navbar-default .navbar-nav > li > a {
     color: snow;
-
 }
 
 .navbar-default .navbar-nav > li > a:hover {
     color: darkorange;
-
 }
 
 .navbar-toggle {
@@ -156,6 +155,7 @@ a {
 
 #trick-show {
     padding: 10px;
+    margin-bottom: -20px;
 }
 
 #trick-content {
@@ -174,13 +174,15 @@ a {
              @MEDIA
 **************************************/
 @media (max-width: 767px) {
-  /*  #img-header, .img-header {
-        margin-top: 0;
-        border-top: 10px solid black;
-    } */
 
     body {
         background-color: whitesmoke;
+    }
+    .trick-name h1, .form-h1 {
+        font-size: 2.5em !important;
+    }
+    .description p {
+        font-size: 0.85em;
     }
 }
 
@@ -198,7 +200,6 @@ a {
     }
 }
 
-
 @media (max-width: 460px) {
     .trick-cat h4, .trick-date h4, .trick-update h4{
         font-size: 1.1em;
@@ -207,11 +208,33 @@ a {
         border-left: 1px solid whitesmoke;
         border-right: 1px solid whitesmoke;
     }
+
+    .trick-date, .trick-update, .trick-cat {
+        height: 95px;
+    }
 }
 
 /*************************************
              FORM
 **************************************/
+
+.comment-form {
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.well-form-comment {
+    background-color: #313131;
+    color: #8959A8;
+}
+
+.well-form-comment legend {
+    color: #8959A8;
+}
+
+.well-form-comment label {
+    display: none;
+}
 
 .custom-form {
     margin-top: 50px;
@@ -270,7 +293,6 @@ a {
 #trick_videos {
     color: darkorange;
     display: block;
-
 }
 
 #trick_enregistrer {
@@ -296,24 +318,32 @@ a {
     margin: auto;
 }
 
-.img-form {
-}
-
 .image-form {
-
     height: 140px;
     width: 200px;
     border : 3px solid black;
     margin: auto;
 }
+
 .form-media-up label {
+    display: none;
+}
+
+.form-avatar {
+    padding: 25px 10px 10px 10px  ;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: #313131;
+    color: #8959A8;
+    margin-bottom: 30px;
+}
+
+#user_profile_avatar .control-label {
     display: none;
 }
 /*************************************
              TRICK
 **************************************/
-
-
 .trick-content {
     font-family: 'Caveat', cursive;
 }
@@ -338,24 +368,23 @@ a {
 
 .description {
     background-color: whitesmoke;
-  /*  margin-top: -22px; */
     margin-bottom: 22px;
-    padding-left: 30px;
+    padding-left: 15px;
     padding-bottom: 20px;
     font-size: 1.6em;
     padding-top: 15px;
     padding-right: 15px;
 }
 
-.well {
-   /* border-bottom: 3px solid cadetblue; */
+.description p {
+    text-align: justify;
 }
 
 .trick-info {
     background-color: whitesmoke;
     margin-top: -22px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .trick-date, .trick-cat, .trick-update {
@@ -375,8 +404,6 @@ a {
 .trick-update {
     color: whitesmoke;
 }
-
-
 
 /*************************************
              BTN
@@ -406,12 +433,13 @@ a {
 }
 
 .ok {
-    background-color: #313131;
+    background-color: skyblue;
     color: whitesmoke;
 }
 
 .ok:hover {
-    color: darkseagreen;
+    background-color: darkorange;
+    color: whitesmoke;
 }
 
 /*************************************
@@ -430,8 +458,6 @@ a {
     margin: 30px 0;
 }
 
-
-
 /*************************************
              COMMENTS
 **************************************/
@@ -444,23 +470,21 @@ a {
     font-size: 1.4em;
 }
 
-.user-comment {
-    padding: 10px;
+.user-comment p {
+    text-align: justify;
+}
 
+.user-comment {
+    padding: 15px 15px 0 15px;
 }
 
 .user-name {
-    padding: 10px;
-    border: 5px solid whitesmoke;
-    background-color: #5eb5e0;
     text-align: center;
 }
 
 .comment-div {
     background-color: whitesmoke;
-    margin-bottom: 5px;
-    border-bottom: 5px dotted grey;
-
+    border-bottom: 3px solid grey;
 }
 
 /*************************************
@@ -470,15 +494,14 @@ a {
     font-family: 'Caveat', cursive;
     display: flex;
     justify-content: center;
-
 }
 
 .notice {
     font-size: 1.5em;
     color: black;
-    background-color: skyblue;
+    border-top: 2px solid darkorange;
+    border-bottom: 2px solid darkorange;
     padding: 20px;
-
 }
 
 /*************************************
@@ -497,10 +520,14 @@ a {
     font-family: 'Caveat', cursive;
     font-size: 2em;
 }
+
+.font-caveat-md {
+    font-family: 'Caveat', cursive;
+    font-size: 1.5em;
+}
 .font-caveat-sm {
     font-family: 'Caveat', cursive;
     font-size: 1em;
-    height: 50px;
 }
 
 .font-marker {
@@ -661,5 +688,62 @@ a {
 
 #delete-trick-modal {
     color: skyblue;
+}
+
+/*******************************
+          BOOTSTRAP
+*********************************/
+
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background-color: black;
+}
+
+.dropdown-menu {
+    margin-top : 4px;
+}
+
+ul .dropdown-menu {
+    background-color: #313131;
+    border-radius: unset;
+    width: 200px;
+}
+
+ul .dropdown-menu a {
+    color: darkorange;
+}
+
+ul .dropdown-menu a:hover {
+    color: skyblue;
+    background-color: black;
+}
+
+.navbar-nav .open .dropdown-menu {
+    background-color: #313131;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+    background-color: black;
+}
+
+.navbar-nav .open .dropdown-menu .dropdown-header, .navbar-nav .open .dropdown-menu > li > a {
+    color: whitesmoke !important;
+}
+
+.navbar-nav .open .dropdown-menu .dropdown-header, .navbar-nav .open .dropdown-menu > li > a:hover {
+    color: skyblue !important;
+}
+
+.navbar-default .navbar-toggle {
+    margin-top: 9px;
+    border-color: skyblue;
+}
+
+.caret {
+    color: skyblue;
+    margin-top: 40px;
+}
+
+.navbar-default .navbar-toggle:hover {
+    background-color: #313131;
 }
 

@@ -28,8 +28,11 @@
             {% for trick in trickList %}
                 <div class="img-slot">
                 {% set img = trick.images.first %}
+                    {% if img != null %}
                     <a href="{{ path('trick_show', {'name': trick.name }) }}"><img class="img-responsive image" style="background-image:url({{ img.getUploadDir() ~ "/" ~ img.url }})" alt="{{ img.alt }}" src="{{ img.getUploadDir() ~ "/" ~ img.url }}"></a>
-
+                    {% else %}
+                    <a href="{{ path('trick_show', {'name': trick.name }) }}"><img class="img-responsive image" style="background-image:url({{ asset('img/jg1.jpg') }})" alt="photo par défaut" src="{{asset('img/jg1.jpg') }}"></a>
+                    {% endif %}
                     <p class="trick-name-index"><a href="{{ path('trick_show', {'name': trick.name }) }}">{{ trick.dbToName }}</a>
                         <!-- if authorized -->
                         {% if is_granted('ROLE_USER') %}

@@ -1,9 +1,13 @@
 {% extends 'layout.html.twig' %}
 
-
 {% block header %}
     {% set img = trick.images.first %}
+    {% if img != null %}
     <img class="full-img img-header" src="{{ "../" ~ img.getUploadDir() ~ "/" ~ img.url }}" alt="{{ img.alt }}">
+    {% else %}
+    <img class="full-img img-header" alt="photo par défaut" src="{{asset('img/jg1.jpg') }}">
+    {% endif %}
+
 {% endblock %}
 
 {% block body %}
@@ -16,9 +20,7 @@
         <div class="flex-div">
             {% for image in trick.images %}
                 <div class="img-slot">
-                    <div class="photo">
-                        <img class="img-responsive image" style="background-image:url({{ "../" ~ image.getUploadDir() ~ "/" ~ image.url }})" alt="{{ image.alt }}" src="{{ "../" ~ image.getUploadDir() ~ "/" ~ image.url }}">
-                    </div>
+                    <img class="img-responsive image" style="background-image:url({{ "../" ~ image.getUploadDir() ~ "/" ~ image.url }})" alt="{{ image.alt }}" src="{{ "../" ~ image.getUploadDir() ~ "/" ~ image.url }}">
                 </div>
             {% endfor %}
             {% for video in trick.videos %}
@@ -62,22 +64,32 @@
         <div class="container">
             <div class="row trick-comments">
                 {% for comment in trick.comments %}
-
-                <div class="comment-div col-md-offset-2 col-md-8 col-xs-12">
-                    <div class="row">
-                        <div class="col-xs-2 user-name">
-                            <p>{{ comment.user.username }}</p>
-                        </div>
-                        <div class="col-xs-10 user-comment">
-                            <p>{{ comment.content }}</p>
-                            <div class="pull-right">
-                                <p>{{ comment.date | date('d/m/Y') }}</p>
+                    <div class="comment-div col-md-offset-2 col-md-8 col-xs-12">
+                        <div class="row">
+                            <a href="{{ path('show_profile', {'id': comment.user.id}) }}" >
+                                <div class="col-sm-2 user-name">
+                                    <div class="row">
+                                        {% set avatar = comment.user.userProfile.avatar %}
+                                        {% if avatar != null %}
+                                            <img class="avatar-comment" src="{{ "../" ~ avatar.getUploadDir() ~ "/" ~ avatar.url }}"/>
+                                        {% else %}
+                                            <img class="avatar-comment" src="{{ asset('img/avatar.png') }}"/>
+                                        {% endif %}
+                                    </div>
+                                    <div class="row">
+                                        <p>{{ comment.user.username }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="col-sm-10 user-comment">
+                                <p>{{ comment.content| nl2br }}</p>
+                                <div class="pull-right">
+                                    <p>{{ comment.date | date('d/m/Y') }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
-
             </div>
         </div>
     </section>

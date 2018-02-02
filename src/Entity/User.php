@@ -43,7 +43,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=120, unique=true)
      * @Assert\NotBlank()
-     * @Assert\Email
+     * @Assert\Email(message="Votre email n'est pas valide")
      */
     private $email;
 
@@ -52,9 +52,15 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\UserProfile", cascade={"persist"})
+     */
+    private $userProfile;
+
     public function __construct()
     {
         $this->isActive = true;
+        $this->userProfile = new UserProfile();
     }
 
     /**
@@ -150,7 +156,10 @@ class User implements UserInterface, \Serializable
         $this->isActive = $active;
     }
 
-
+    public function getUserProfile()
+    {
+        return $this->userProfile;
+    }
 
     public function getRoles()
     {

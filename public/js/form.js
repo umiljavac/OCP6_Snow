@@ -133,14 +133,14 @@ $(document).ready(function() {
         var re1 = new RegExp("dailymotion");
         if (re.test(link) === true)
         {
-            /\/embed\/([a-zA-Z0-9_]+)/.exec(link);
+            /\/embed\/([-a-zA-Z0-9_]+)/.exec(link);
             var linkEltY = RegExp.$1;
             return "https://img.youtube.com/vi/" + linkEltY + "/hqdefault.jpg"
 
         }
         if (re1.test(link) === true)
         {
-            /\/video\/([a-zA-Z0-9_]+)/.exec(link);
+            /\/video\/([-a-zA-Z0-9_]+)/.exec(link);
             var linkEltD = RegExp.$1;
             return "https://www.dailymotion.com/thumbnail/video/" + linkEltD;
         }

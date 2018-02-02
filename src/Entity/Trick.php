@@ -57,10 +57,6 @@ class Trick
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="trick", cascade={"persist"}, orphanRemoval=true)
-     * @Assert\Count(
-     *     min="1",
-     *     minMessage="Il faut au moins une photo par figure :)"
-     * )
      */
     private $images;
 

@@ -38,8 +38,21 @@
                 </li>
                 {% if is_granted('ROLE_USER') %}
                 <li>
-                    <a href="{{ path('logout') }}">Déconnexion</a>
+                    <div class="dropdown">
+                        {% set avatar = app.user.userProfile.avatar %}
+                        {% set user = app.user %}
+                        {% if avatar != null %}
+                            <a href="#" data-toggle="dropdown"><img class="avatar-menu" src="{{ "/" ~ avatar.getUploadDir() ~ "/" ~ avatar.url }}"><span class="caret"></span></a>
+                        {% else %}
+                            <a href="#" data-toggle="dropdown"><img class="avatar-menu" src="{{ asset('img/avatar.png') }}"><span class="caret"></span></a>
+                        {% endif %}
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('show_profile', {'id' : user.id }) }}">Profil</a> </li>
+                            <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                        </ul>
+                    </div>
                 </li>
+
                 {% else %}
                 <li>
                     <a href="{{ path('login') }}">Connexion</a>
@@ -58,10 +71,11 @@
 {% if is_granted('ROLE_USER') %}
     <aside id="menu">
         {% if (app.request.get('_route') == 'trick_show') %}
-        <a href="{{ path('trick_update', {'name': trick.name}) }}"><div id="menu-edit"><i class="glyphicon text-center glyphicon-edit"></i></div></a>
+            <a href="{{ path('trick_update', {'name': trick.name}) }}"><div id="menu-edit"><i class="glyphicon text-center glyphicon-edit"></i></div></a>
+        {% elseif (app.request.get('_route') == 'show_profile') %}
+            <a href="{{ path('update_profile') }}"><div id="menu-edit"><i class="glyphicon text-center glyphicon-edit"></i></div></a>
         {% endif %}
         <a href="{{ path('trick_add') }}"><div id="menu-add"><i class="glyphicon text-center glyphicon-pencil"></i></div></a>
-        <div id="menu-user"><i class="glyphicon text-center glyphicon-sunglasses"></i></div>
         <a href="{{ path('home') }}"><div id="menu-home"><i class="glyphicon text-center glyphicon-home"></i></div></a>
         <div id="menu-plus" class="trigger-off"><i class="glyphicon text-center glyphicon-plus"></i></div>
     </aside>

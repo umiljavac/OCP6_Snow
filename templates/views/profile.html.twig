@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+<div>
+
+    <div class="container">
+        <div class="row margin-top-xl">
+            <h1 class="form-h1 text-center ws-lg">{{ showUser.username }}</h1>
+        </div>
+
+        {{ include('views/message.html.twig') }}
+    </div>
+        <div class="flex-avatar">
+    {% set avatar = userProfile.avatar %}
+    {% if avatar != null %}
+            <img class="img-responsive avatar" style="background-image:url({{ "../" ~ userProfile.avatar.getUploadDir() ~ "/" ~ userProfile.avatar.url }})" alt="{{ avatar.alt }}" src="{{ "../" ~ avatar.getUploadDir() ~ "/" ~ avatar.url }}">
+        {% else %}
+            <img class="img-responsive avatar" style="background-image:url({{ asset('img/avatar2.jpg') }})" alt="photo d'un casual" src="{{ asset('img/avatar.png') }}">
+        {% endif %}
+            </div>
+    <div class="container">
+        <div class="row margin-top-md text-center font-caveat-md">
+            <p> {{ userProfile.infos| nl2br }}</p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
