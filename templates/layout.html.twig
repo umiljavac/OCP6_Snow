@@ -68,19 +68,31 @@
     {% endblock %}
 </div>
 
-{% if is_granted('ROLE_USER') %}
     <aside id="menu">
+    {% if is_granted('ROLE_USER') %}
         {% if (app.request.get('_route') == 'trick_show') %}
             <a href="{{ path('trick_update', {'name': trick.name}) }}"><div id="menu-edit"><i class="glyphicon text-center glyphicon-edit"></i></div></a>
         {% elseif (app.request.get('_route') == 'show_profile') %}
             <a href="{{ path('update_profile') }}"><div id="menu-edit"><i class="glyphicon text-center glyphicon-edit"></i></div></a>
         {% endif %}
         <a href="{{ path('trick_add') }}"><div id="menu-add"><i class="glyphicon text-center glyphicon-pencil"></i></div></a>
+        {%  if (app.request.get('_route') == 'home') %}
+            <a href="#tricks-anchor" class="scroll-to">
+        {% else %}
+            <a href="/home#tricks-anchor" class="scroll-to">
+        {% endif %}
+            <div id="menu-scroll-connected"><i class="glyphicon text-center glyphicon-flash"></i></div></a>
         <a href="{{ path('home') }}"><div id="menu-home"><i class="glyphicon text-center glyphicon-home"></i></div></a>
         <div id="menu-plus" class="trigger-off"><i class="glyphicon text-center glyphicon-plus"></i></div>
+    {% else %}
+        {% if (app.request.get('_route') == 'home') %}
+            <a href="#tricks-anchor" class="scroll-to"><div id="menu-scroll"><i class="glyphicon text-center glyphicon-flash"></i></div></a>
+        {% else %}
+            <a href="/home#tricks-anchor" class="scroll-to"><div id="menu-scroll"><i class="glyphicon text-center glyphicon-flash"></i></div></a>
+        {% endif %}
+    {% endif %}
     </aside>
-{% endif %}
-    {% block body %}
+{% block body %}
     {% endblock %}
 
     <footer>

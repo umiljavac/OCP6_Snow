@@ -1,15 +1,11 @@
 
 $(document).ready(function () {
-   var closeX = $('#closex');
-   var clearDiv = $('.text-uppon-img');
-   closeX.click(function () {
-       clearDiv.remove();
-   });
-        centerBlocks();
 
-        $(window).resize(function() {
-            centerBlocks();
-        });
+    centerBlocks();
+
+    $(window).resize(function() {
+        centerBlocks();
+    });
 });
 
 function centerBlocks() {

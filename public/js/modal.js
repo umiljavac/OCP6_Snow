@@ -1,3 +1,11 @@
+$(document).ready(function () {
+    $('.scroll-to').on('click', function() {
+        var anchor = $(this).attr('href');
+        console.log(anchor);
+        $('html, body').animate( { scrollTop: $(anchor).offset().top }, 1000);
+        return false;
+    });
+});
 
 var triggers = document.getElementsByClassName('btn-trash');
 var modal = document.getElementById("myModal");

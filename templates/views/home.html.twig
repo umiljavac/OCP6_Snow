@@ -1,27 +1,42 @@
 {% extends "layout.html.twig" %}
 
 {% block header %}
-    <div class="main-head">
-        <img class="img-header full-img" src="{{ asset('img/pk1.jpg') }}">
-        <div class="text-uppon-img">
+
+    <div class="img-back">
+        <div class="text1-uppon-img">
             <p><span class="snow-tricks">
-                {% if is_granted('ROLE_USER') %}
-                    Hello {{ app.user.username }} ! Bien ou .. bien ?
-                {% else %}
-                     Codex Numérique pour Snowboarders</span>
-            {% endif %}
-                <a class="btn btn-xs" id="closex">X</a></p>
+                    Codex Numérique pour Snowboarders</span>
+            </p>
         </div>
     </div>
+
+    <div class="container">
+        <div class="h1-snow row">
+            <h1 class="text-center ws-lg">Snow Tricks</h1>
+        </div>
+    </div>
+
+    <div class="img-back2">
+        <div class="text3-uppon-img">
+                <span class="snow-tricks4">techniques</span>
+                <span class="snow-tricks4"> conseils</span>
+                <span class="snow-tricks4"> forums</span>
+                <span class="snow-tricks4"> matos</span>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block body %}
     {{ include('views/message.html.twig') }}
-    <p id="tricks-anchor"></p>
+    <span id="tricks-anchor"></span>
 
-    <div class="trick-codex">
-        <h1 class="text-center">Tricks Codex</h1>
+    <div class="container">
+        <div class="trick-codex row">
+            <h2 class="text-center ws-lg">Tricks Codex</h2>
+        </div>
     </div>
+
     <section id="trick-index">
         <div class="flex-div">
             {{ include('views/modalDelete.html.twig') }}
