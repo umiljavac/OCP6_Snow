@@ -237,9 +237,8 @@ a {
 .trick-codex h2 {
     padding: 5px;
     font-size: 4em;
-   /* background-color: #313131; */
     color: whitesmoke;
-    text-shadow: 0  13px 3px #313131, 0 26px 4px grey, 0 0 1em black, 0 0 2em grey;
+    text-shadow: 0  13px 3px darkorange, 0 26px 4px #313131, 0 0.1em 1em orangered, 0 0 2em grey;
 
 }
 
@@ -261,7 +260,16 @@ a {
     }
 
     .trick-codex h2 {
-        text-shadow: 0  8px 3px #313131, 0 16px 4px grey, 0 0 1em black, 0 0 2em grey;
+        text-shadow: 0  8px 3px darkorange, 0 16px 4px #313131, 0 0.1em 1em orangered, 0 0 2em grey;
+    }
+
+    .trick-name h1 {
+        text-shadow: 0  8px 3px darkorange, 0 16px 4px #313131, 0 0.1em 1em orangered, 0 0 2em grey !important;
+    }
+
+    #trick_enregistrer, #user_profile_enregistrer {
+        font-size: 1.6em !important;
+        background-color: #8959A8;
     }
 }
 
@@ -270,6 +278,7 @@ a {
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
+
 }
 
 @media (min-width:460px) {
@@ -374,8 +383,8 @@ a {
     display: block;
 }
 
-#trick_enregistrer {
-    margin-top: 0px;
+#trick_enregistrer, #user_profile_enregistrer {
+    margin-top: 0;
     width: 80%;
     margin-left: 10%;
     height: 60px;
@@ -386,7 +395,7 @@ a {
     border: 1px solid black;
 }
 
-#trick_enregistrer:hover {
+#trick_enregistrer:hover, #user_profile_enregistrer:hover {
     background-color: #313131;
     color: darkseagreen;
 }
@@ -445,8 +454,9 @@ a {
 .trick-name h1 {
     padding: 5px;
     font-size: 4em;
-    color: darkorange;
-    background-color: #313131;
+    color: whitesmoke;
+  /*  background-color: #313131; */
+    text-shadow: 0  13px 3px darkorange, 0 26px 4px #313131, 0 0.1em 1em orangered, 0 0 2em grey;
 }
 
 .description {

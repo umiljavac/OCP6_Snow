@@ -95,3 +95,24 @@ iframe {
     display: flex;
     justify-content: center;
 }
+
+#view-media {
+    display: none;
+    justify-content: center;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+#view-media h3 {
+    border: 3px solid black;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: skyblue;
+    color: whitesmoke;
+}
+
+#view-media h3:hover {
+    background-color: deepskyblue;
+}
+
