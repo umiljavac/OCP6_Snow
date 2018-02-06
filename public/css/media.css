@@ -50,3 +50,69 @@ iframe {
     display: flex;
     justify-content: center;
 }
+
+.avatar-slot {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.avatar, .avatar-thumb, .avatar-comment {
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.avatar {
+    height: 200px;
+    width: 200px;
+    background-color: skyblue;
+
+}
+
+.avatar-thumb {
+    width: 100px;
+    height: 100px;
+    background-color: skyblue;
+}
+
+.avatar-comment {
+    width: 70px;
+    height: 70px;
+    background-color: skyblue;
+    margin-top: 10px;
+}
+
+.avatar-menu {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid whitesmoke;
+    margin-top: 5px;
+    margin-left: 15px;
+    background-color: skyblue;
+}
+
+.flex-avatar {
+    display: flex;
+    justify-content: center;
+}
+
+#view-media {
+    display: none;
+    justify-content: center;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+#view-media h3 {
+    border: 3px solid black;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: skyblue;
+    color: whitesmoke;
+}
+
+#view-media h3:hover {
+    background-color: deepskyblue;
+}
+
