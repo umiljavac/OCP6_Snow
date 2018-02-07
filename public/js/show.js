@@ -1,6 +1,6 @@
 var imageZoom = 0;
 $(document).ready(function () {
-    $('.image').click(function () {
+    $('.image').click(function (e) {
         imageZoom = 1;
         var imgClone = $(this).clone();
         $(".flex-div").hide();
@@ -9,17 +9,18 @@ $(document).ready(function () {
         zoomDiv.append(imgClone);
         $('#trick-title').append(zoomDiv);
 
-        $(imgClone).click(function () {
+        $(imgClone).click(function (e) {
             imageZoom = 0;
             zoomDiv.remove();
             $(".flex-div").show();
             centerBlocks();
+            e.preventDefault();
         });
+        e.preventDefault()
     });
 
     checkSize();
     $(window).resize(function() {
-
         checkSize();
     });
 
@@ -48,6 +49,26 @@ $(document).ready(function () {
         }
     }
 
-    var letters = $('.trick-name h1').text();
-    console.log(letters);
+    var nbCom = 5;
+    var limit = 0;
+    var offset = 5;
+
+    showComment();
+
+
+    $('#loadMore').click(function (e) {
+        limit = offset;
+        offset = offset + nbCom;
+        showComment();
+
+        if ($('.comment-div:hidden').length === 0)
+        {
+            $(this).hide();
+        }
+        e.preventDefault();
+    });
+
+    function showComment() {
+        $('.comment-div').slice(limit, offset).show();
+    }
 });

@@ -8,15 +8,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
-use App\Entity\Image;
 use App\Entity\Trick;
-use App\Entity\Video;
-use App\Form\Type\CommentType;
-use App\Form\Type\ImageType;
 use App\Form\Type\TrickType;
 use App\Service\UploadedImgCleaner;
-use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -46,6 +40,7 @@ class TrickController extends Controller
         {
             throw $this->createNotFoundException('La figure n\'éxiste pas');
         }
+
         return $this->render('views/show.html.twig', array('trick' => $trick));
     }
 
@@ -89,7 +84,7 @@ class TrickController extends Controller
             $uploadedImgCleaner->cleanImgFile($oldImgUrls, $trick);
             $trick->updated();
             $em->flush();
-            $this->addFlash('notice', 'Les modifs ont bien été prises en compte !:)');
+            $this->addFlash('notice', 'Les modifs ont bien été prises en compte :)');
             return $this->redirectToRoute('trick_show', array('name' => $trick->getName()));
         }
         return $this->render('views/update.html.twig', array('trick' => $trick, 'form' => $form->createView()));
@@ -113,28 +108,5 @@ class TrickController extends Controller
         $this->addFlash('notice', 'La figure a bien été supprimée');
 
         return $this->redirectToRoute('home');
-    }
-
-    /**
-     * @Route("/trick/{name}/comment", name="trick_comment")
-     * @Security("has_role('ROLE_USER')")
-     */
-    public function addCommentAction(Trick $trick, Request $request)
-    {
-        $comment = new Comment();
-        $content = htmlspecialchars($request->get('content'));
-        if (!empty($content))
-        {
-            $comment->setContent($content);
-            $comment->setTrick($trick);
-            $comment->setUser($this->getUser());
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
-
-            $this->addFlash('notice', 'Et un commentaire, un ! Good Job !');
-        }
-       return $this->redirectToRoute('trick_show', array('name' => $trick->getName()));
     }
 }
