@@ -584,10 +584,23 @@ a {
 }
 
 .comment-div {
+    display: none;
     background-color: whitesmoke;
     border-bottom: 3px solid grey;
 }
 
+#loadMore-div {
+    display: flex;
+    justify-content: center;
+}
+
+#loadMore {
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 15px;
+    border: 2px solid skyblue;
+    padding: 5px;
+}
 /*************************************
              MESSAGE FLASH
 **************************************/
