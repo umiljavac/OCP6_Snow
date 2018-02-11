@@ -1,0 +1,7 @@
+<div class="message-login text-center margin-h-md">
+    {% for message in app.flashes('login') %}
+        <div class="login">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>

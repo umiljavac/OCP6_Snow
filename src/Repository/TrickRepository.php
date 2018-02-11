@@ -13,10 +13,6 @@ class TrickRepository extends ServiceEntityRepository
         parent::__construct($registry, Trick::class);
     }
 
-    public function findListHome()
-    {
-
-    }
     /*
     public function findBySomething($value)
     {

@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Trick;
 use App\Form\Type\TrickType;
 use App\Service\UploadedImgCleaner;
@@ -26,6 +27,7 @@ class TrickController extends Controller
     {
         $trickRepository = $this->getDoctrine()->getRepository(Trick::class);
         $trickList = $trickRepository->findAll();
+
         return $this->render('views/home.html.twig', array(
             'trickList' => $trickList
         ));
@@ -40,7 +42,6 @@ class TrickController extends Controller
         {
             throw $this->createNotFoundException('La figure n\'éxiste pas');
         }
-
         return $this->render('views/show.html.twig', array('trick' => $trick));
     }
 

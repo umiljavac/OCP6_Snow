@@ -16,8 +16,8 @@ $(document).ready(function() {
     }
     function addImage($container) {
         var template = $container.attr('data-prototype')
-            .replace(/__name__label__/g, 'Image n°' + (indexI+1))
-            .replace(/__name__/g,        indexI)
+            .replace(/__name__label__/g, 'Image n°' + (indexI + 1))
+          //  .replace(/__name__/g,        indexI)
         ;
         var $prototype = $(template);
         addDeleteLink($prototype);
@@ -26,7 +26,7 @@ $(document).ready(function() {
 
     }
     function addDeleteLink($prototype) {
-        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+        var $deleteLink = $('<a href="#" class="btn btn-danger delete">Supprimer</a>');
         $prototype.append($deleteLink);
         $deleteLink.click(function(e) {
             $prototype.remove();
@@ -35,6 +35,7 @@ $(document).ready(function() {
         });
     }
 });
+
 $(document).ready(function() {
     var $container = $('div#trick_videos');
     var index = $container.find(':input').length;
@@ -72,6 +73,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+    attributeLabel();
     var imgs = $('.img-form');
     var counter = imgs.length;
     for (var i = 0; i < imgs.length; i++)
@@ -81,23 +83,48 @@ $(document).ready(function() {
        formElement.hide();
 
        var divElement = $('#trick_images_' + i);
-       divElement.find('label').hide();
-       divElement.prev().text('Image n° ' + (i + 1));
+       divElement.prev().text('Image n° ' + i);
     }
 
-    $("label[for='trick_images_0_file']").hide();
     var add = $('#add_image');
     add.click(function () {
-        $('#trick_images_' + counter +'_file').prev().hide();
+       $('#trick_images_' + counter +'_file').prev().hide();
         var $container = $('div#trick_images');
-        var indexI = $container.find('input').length;
+        var indexI = $container.find(':input').length;
         for (var i = 0; i <= indexI; i++ )
         {
             $("label[for='trick_images_" + i + "_file']").hide();
         }
         counter++;
-    })
+        attributeLabel();
+        console.log('attribution post add')
+
+    });
+
+     var del = $('.delete');
+     del.click(function () {
+        attributeLabel();
+        console.log('atrribution post delete')
+    });
+
+     function attributeLabel() {
+         var mainDiv = $("#trick_images");
+         var labelImg =  mainDiv.find("label");
+         $(labelImg[0]).text("Image principale");
+         var mediaUp = mainDiv.find(".form-media-up");
+         $(mediaUp[0]).attr("class", "form-group form-media-up img-form");
+          var imgTarget = $(mediaUp[0]).find('img');
+         $(imgTarget).attr("class", "img-responsive");
+         $(imgTarget).prev().attr("class", "image-full-form");
+         for (var s = 1; s < labelImg.length; s++)
+         {
+             $(labelImg[s]).text("Image n° " + (s));
+         }
+     }
+
+    $("#trick_images_0").prev().text('Image principale');
 });
+
 
 $(document).ready(function() {
     var videos = $('#trick_videos');

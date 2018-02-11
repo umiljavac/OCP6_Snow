@@ -36,6 +36,7 @@ class Image
      */
     private $trick;
 
+
     private $file;
 
     /**

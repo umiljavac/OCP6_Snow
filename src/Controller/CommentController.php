@@ -35,8 +35,26 @@ class CommentController extends Controller
             $em->persist($comment);
             $em->flush();
 
-            $this->addFlash('notice', 'Et un commentaire, un ! Good Job !');
+            $this->addFlash('notice', 'Et un commentaire, un ! Good job !');
         }
         return $this->redirectToRoute('trick_show', array('name' => $trick->getName()));
     }
+
+    /**
+     * @param Comment $comment
+     * @Route("/trick/{name}/delete/comment/{id}", name="delete_comment")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function deleteAction(Trick $trick, $id)
+    {
+        $comment = $this->getDoctrine()->getRepository(Comment::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($comment);
+        $em->flush();
+        $this->addFlash('notice', 'Commentaire supprimé !');
+
+        return $this->redirectToRoute('trick_show', array('name' => $trick->getName()));
+
+    }
+
 }

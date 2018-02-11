@@ -63,7 +63,7 @@ a {
 }
 
 .img-back {
-    background-image: url("../img/pk4full.jpg");
+    background-image: url("../img/pk5full.jpg");
     background-size: cover;
     margin-top: 50px;
     width: 100vw;
@@ -92,18 +92,8 @@ a {
     background-color: rgba(23, 24, 23, 0.4);
     border: none !important;
     position: absolute;
-    bottom: 0%;
+    bottom: 0;
     width: 100%;
-}
-
-.text3-uppon-img {  /* inutilisé pr l'instant*/
-    background-color: rgba(23, 24, 23, 1);
-    border: none !important;
-    position: absolute;
-    bottom: 30%;
-    width: 100%;
-    display: none;
-    justify-content: space-around;
 }
 
 .text4-uppon-img {
@@ -136,14 +126,6 @@ a {
 .snow-tricks {
     color: skyblue;
     font-size: 5vw;
-}
-
-.snow-tricks4 { /* inutilisé pr l'instant*/
-    color: skyblue ;
-    font-size: 4.5vw;
-    display: inline-block;
-    padding-left: 10px;
-    font-family: 'Caveat', cursive;
 }
 
 .snow-tricks3 {
@@ -214,14 +196,10 @@ a {
 
 .h1-snow h1 {
     font-size: 6em;
-   /* background-color: #313131; */
-  /*  color: darkorange; */
     color: whitesmoke;
     padding-bottom: 5px;
     padding-top: 5px;
     text-shadow: 0 20px 3px skyblue, 0 40px 4px darkorange, 0 0 1em orangered, 0 0 2em darkorange;
-
-
 }
 
 .h1-snow {
@@ -237,9 +215,8 @@ a {
 .trick-codex h2 {
     padding: 5px;
     font-size: 4em;
-    color: whitesmoke;
-    text-shadow: 0  13px 3px darkorange, 0 26px 4px #313131, 0 0.1em 1em orangered, 0 0 2em grey;
-
+    color: darkorange;
+    background-color: #313131;
 }
 
 /*************************************
@@ -255,21 +232,18 @@ a {
     .description p {
         font-size: 0.85em;
     }
+
     .h1-snow h1 {
         text-shadow: 0 8px 3px skyblue, 0 16px 4px darkorange, 0 0 1em orangered, 0 0 2em darkorange;
-    }
-
-    .trick-codex h2 {
-        text-shadow: 0  8px 3px darkorange, 0 16px 4px #313131, 0 0.1em 1em orangered, 0 0 2em grey;
-    }
-
-    .trick-name h1 {
-        text-shadow: 0  8px 3px darkorange, 0 16px 4px #313131, 0 0.1em 1em orangered, 0 0 2em grey !important;
     }
 
     #trick_enregistrer, #user_profile_enregistrer {
         font-size: 1.6em !important;
         background-color: #8959A8;
+    }
+
+    .login {
+        font-size: 20px !important;
     }
 }
 
@@ -454,9 +428,9 @@ a {
 .trick-name h1 {
     padding: 5px;
     font-size: 4em;
-    color: whitesmoke;
-  /*  background-color: #313131; */
-    text-shadow: 0  13px 3px darkorange, 0 26px 4px #313131, 0 0.1em 1em orangered, 0 0 2em grey;
+    color: darkorange;
+   background-color: #313131;
+   /* text-shadow: 0  13px 3px darkorange, 0 26px 4px #313131, 0 0.1em 1em orangered, 0 0 2em grey; */
 }
 
 .description {
@@ -616,6 +590,22 @@ a {
     border-top: 2px solid darkorange;
     border-bottom: 2px solid darkorange;
     padding: 20px;
+}
+
+.message-login {
+    font-family: 'Caveat', cursive;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50px;
+    background-color: rgba(25, 25, 25, 0.4);
+    width: 100%;
+}
+
+.login {
+    font-size: 35px;
+    color: skyblue;
+    padding: 15px;
 }
 
 /*************************************
@@ -820,6 +810,18 @@ a {
 
 #delete-trick-modal {
     color: skyblue;
+}
+
+/*******************************
+          ERROR
+*********************************/
+
+.error-login {
+    background-color: #313131;
+    color: darkorange;
+    font-family: "Caveat", cursive;
+    font-size: 1.7em;
+    margin : 0 10% 3% 10%;
 }
 
 /*******************************
