@@ -25,15 +25,24 @@
         </div>
     </div>
     <hr>
+
     <div class="form-group margin-top">
         {{ form_row(form.images, {'attr': {'class': 'form-media'}}) }}
         {% if app.request.get('_route') == 'trick_update' %}
             {% for image in trick.images %}
+                {% if loop.first %}
+                    <div class="form-group form-media-up img-form">
+                        <div class="image-full-form">
+                            <img class="img-responsive" style="background-image:url({{ "../" ~ image.getUploadDir() ~ "/" ~ image.url }})" alt="{{ image.alt }}" src="{{ "../../" ~ image.getUploadDir() ~ "/" ~ image.url }}">
+                        </div>
+                    </div>
+                {% else %}
                 <div class="img-slot-form form-group form-media-up img-form">
                     <div class="photo">
                         <img class="img-responsive image-form" style="background-image:url({{ "../" ~ image.getUploadDir() ~ "/" ~ image.url }})" alt="{{ image.alt }}" src="{{ "../../" ~ image.getUploadDir() ~ "/" ~ image.url }}">
                     </div>
                 </div>
+                {% endif %}
             {% endfor %}
         {% endif %}
         <a href="#" id="add_image" class="btn btn-default">Ajouter une image</a>

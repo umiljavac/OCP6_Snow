@@ -1,0 +1,10 @@
+<h3>Good job {{ user.username|capitalize }}!</h3>
+
+<p>Tu n'as plus qu'à cliquer sur le lien pour valider l'activation de ton compte ! A tout de suite :)</p>
+<a  href="{{ url('register_validation', { 'token': token , 'id': user.id  }) }}">Valider mon inscription</a>
+
+<p>Après ça il faudra te connecter. N'hésite pas à customiser ton avatar : </p>
+<img src="{{ absolute_url(asset('img/avatar.png')) }}">
+<p>Merci !</p>
+<p>SnowTricks Team</p>
+<img src="{{ absolute_url(asset('img/pk1min.jpg')) }}">

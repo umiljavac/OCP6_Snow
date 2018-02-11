@@ -18,6 +18,7 @@
     margin-top: 15px;
 }
 
+
 #trick-show .image:hover {
     box-shadow: 0 0 3px 1px #313131;
 }
@@ -40,7 +41,13 @@ iframe {
     width: auto;
     height: auto;
     margin: 15px 0 45px 0;
+}
 
+.image-full-form {
+    width: auto;
+    height: auto;
+    margin: 15px 0 10px 0;
+    border: 3px solid black;
 }
 
 .zoom-div {

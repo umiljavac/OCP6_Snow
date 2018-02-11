@@ -3,18 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="app_users")
- * @UniqueEntity(fields="email", message="Email already taken")
- * @UniqueEntity(fields="username", message="Username already taken")
+ * @UniqueEntity(fields="email", message="Cet email est déjà pris")
+ * @UniqueEntity(fields="username", message="Ce pseudo est déjà pris")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface, \Serializable
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -57,9 +57,14 @@ class User implements UserInterface, \Serializable
      */
     private $userProfile;
 
+    /**
+     * @ORM\Column(type="string", length=120)
+     */
+    private $activationToken;
+
     public function __construct()
     {
-        $this->isActive = true;
+        $this->isActive = false;
         $this->userProfile = new UserProfile();
     }
 
@@ -161,6 +166,23 @@ class User implements UserInterface, \Serializable
         return $this->userProfile;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getActivationToken()
+    {
+        return $this->activationToken;
+    }
+
+    /**
+     * @param mixed $activationToken
+     */
+    public function setActivationToken($activationToken): void
+    {
+        $this->activationToken = $activationToken;
+    }
+
+
     public function getRoles()
     {
         return array('ROLE_USER');
@@ -170,6 +192,26 @@ class User implements UserInterface, \Serializable
     {
     }
 
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+
     /** @see \Serializable::serialize() */
     public function serialize()
     {
@@ -177,6 +219,7 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
+            $this->isActive,
             // see section on salt below
             // $this->salt,
         ));
@@ -189,6 +232,7 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
+            $this->isActive,
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized);
