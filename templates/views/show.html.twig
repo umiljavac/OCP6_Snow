@@ -62,7 +62,7 @@
         </div>
     </section>
     {% if is_granted('ROLE_USER') %}
-        {{ include('views/message.html.twig') }}
+        {{ include('views/fash/message.html.twig') }}
         {{ include('views/commentForm.html.twig') }}
     {% endif %}
     <section id="comments">
