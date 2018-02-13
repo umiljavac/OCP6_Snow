@@ -31,7 +31,7 @@ class RegistrationController extends Controller
         {
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
-            $activationToken = $this->makeValidationToken($user->getEmail());
+            $activationToken = md5($user->getEmail());
             $user->setActivationToken($activationToken);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -61,14 +61,14 @@ class RegistrationController extends Controller
         }
 
         $activationToken = $user->getActivationToken();
-        $message = $this->checkToken($token, $activationToken, $user);
+        $message = $this->checkValidationToken($token, $activationToken, $user);
         $em->persist($user);
         $em->flush();
         $this->addFlash('login', $message);
         return $this->redirectToRoute('home');
     }
 
-    public function checkToken($requestToken, $activationToken, $user)
+    public function checkValidationToken($requestToken, $activationToken, $user)
     {
         if ($requestToken === $activationToken)
         {
@@ -82,11 +82,6 @@ class RegistrationController extends Controller
             $message = 'Oops ! La validation de ton compte a échoué. Rééssaye de valider le lien dans ton email';
         }
         return $message;
-    }
-
-    public function makeValidationToken($toHash)
-    {
-        return base64_encode($toHash);
     }
 
     public function sendConfirmation( \Swift_Mailer $mailer, $user, $validationToken)

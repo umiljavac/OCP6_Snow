@@ -62,6 +62,11 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $activationToken;
 
+    /**
+     * @ORM\Column(type="string", length=120, nullable=true)
+     */
+    private $resetPasswordToken;
+
     public function __construct()
     {
         $this->isActive = false;
@@ -181,6 +186,23 @@ class User implements AdvancedUserInterface, \Serializable
     {
         $this->activationToken = $activationToken;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getResetPasswordToken()
+    {
+        return $this->resetPasswordToken;
+    }
+
+    /**
+     * @param mixed $resetPasswordToken
+     */
+    public function setResetPasswordToken($resetPasswordToken): void
+    {
+        $this->resetPasswordToken = $resetPasswordToken;
+    }
+
 
 
     public function getRoles()
