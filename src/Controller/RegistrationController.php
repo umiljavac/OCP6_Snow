@@ -48,40 +48,24 @@ class RegistrationController extends Controller
 
     /**
      * @param Request $request
-     * @Route("/validation/{token}/user/{id}", name="register_validation", requirements={"id"="\d+"})
+     * @Route("/register/{token}/validation", name="register_validation")
      */
-    public function registerValidationAction($token, $id)
+    public function registerValidationAction($token)
     {
+        $repository = $this->getDoctrine()->getManager()->getRepository(User::class);
+        $user = $repository->findOneBy(['activationToken' => $token]);
         $em = $this->getDoctrine()->getManager();
-        $user = $em->find(User::class, $id);
 
         if(!$user)
         {
             throw $this->createNotFoundException('Désolé c\'est moche : tu n\'éxiste pas :( Try again !');
         }
-
-        $activationToken = $user->getActivationToken();
-        $message = $this->checkValidationToken($token, $activationToken, $user);
+        $user->setActive(true);
+        $user->setActivationToken(null);
         $em->persist($user);
         $em->flush();
-        $this->addFlash('login', $message);
+        $this->addFlash('login', 'Félicitations ! Ton inscription est terminée, tu peux maintenant te connecter :)');
         return $this->redirectToRoute('home');
-    }
-
-    public function checkValidationToken($requestToken, $activationToken, $user)
-    {
-        if ($requestToken === $activationToken)
-        {
-            $user->setActive(true);
-            $user->setActivationToken(null);
-
-            $message = 'Félicitations ! Ton inscription est terminée, tu peux maintenant te connecter :)';
-        }
-        else
-        {
-            $message = 'Oops ! La validation de ton compte a échoué. Rééssaye de valider le lien dans ton email';
-        }
-        return $message;
     }
 
     public function sendConfirmation( \Swift_Mailer $mailer, $user, $validationToken)
