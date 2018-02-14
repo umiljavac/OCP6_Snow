@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Image;
 use App\Entity\Trick;
 use App\Form\Type\TrickType;
 use App\Service\UploadedImgCleaner;
@@ -36,7 +35,7 @@ class TrickController extends Controller
     /**
      * @Route("/trick/{name}", name="trick_show")
      */
-    public function showAction(Trick $trick, Request $request) // on utilise les annotations et le SensioFrameworkExtraBundle
+    public function showAction(Trick $trick) // on utilise les annotations et le SensioFrameworkExtraBundle
     {
         if(!$trick)
         {

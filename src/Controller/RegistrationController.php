@@ -50,7 +50,7 @@ class RegistrationController extends Controller
      * @param Request $request
      * @Route("/validation/{token}/user/{id}", name="register_validation", requirements={"id"="\d+"})
      */
-    public function registerValidationAction(Request $request, $token, $id)
+    public function registerValidationAction($token, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->find(User::class, $id);

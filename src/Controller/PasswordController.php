@@ -8,15 +8,12 @@
 
 namespace App\Controller;
 
-
 use App\Entity\User;
 use App\Form\Type\UpdatePasswordType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-
 
 class PasswordController extends Controller
 {
@@ -63,16 +60,16 @@ class PasswordController extends Controller
                         array(
                             'token' => $resetToken,
                             'user' => $user)
-                            ),
+                    ),
                 'text/html'
                 );
         $mailer->send($message);
     }
 
     /**
-     * @Route("/check/{token}/password/{id}", name="check_reset_token")
+     * @Route("/check/{token}/password", name="check_reset_token")
      */
-    public function checkToken($token, $id)
+    public function checkToken($token)
     {
         $repository = $this->getDoctrine()->getRepository(User::class);
         $user = $repository->findOneBy(['resetPasswordToken' => $token]);
@@ -86,7 +83,7 @@ class PasswordController extends Controller
      * @param User $user
      * @Route("/update/{id}/password", name="update_password")
      */
-    public function updatePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, User $user, AuthenticationUtils $authUtils)
+    public function updatePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, User $user)
     {
 
         $form = $this->createForm(UpdatePasswordType::class);
