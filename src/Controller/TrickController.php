@@ -11,6 +11,7 @@ namespace App\Controller;
 use App\Entity\Trick;
 use App\Form\Type\TrickType;
 use App\Service\UploadedImgCleaner;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

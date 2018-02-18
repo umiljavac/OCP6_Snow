@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <img class="full-img img-header" alt="photo par défaut" src="{{asset('img/404.jpg') }}">
+
+    <div>
+    <div class="container">
+        <div class="trick-name row">
+            <h1 class="text-center ws-lg margin-bottom-md">Ya kekun ?</h1>
+        </div>
+    </div>
+    <div class="font-caveat container">
+        <p class="text-center">
+            Je crois qu'il n'y rien à voir dans le coin... Mieux vaut retourner à <a href="{{ path('home') }}"><span class="">l 'accueil</span></a>
+        </p>
+    </div>
+    </div>
+{% endblock %}
