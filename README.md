@@ -11,7 +11,7 @@ This project use Symfony 4 framework and Symfony 4 requires PHP version > 7.1.3 
 1. Clone this repository (Master or Production branches)
 2. Put the downloaded repository into your server root folder. You can also use the Symfony server, in this case you don't have to put the dowloaded repository in your root server folder, but after complete installation you will have to run the `$ php bin/console server:run` command.
 3. Install the vendors : 
-  * Download [composer](https://getcomposer.org/)`
+  * Download [composer](https://getcomposer.org/)
   * Put the composer.phar file into the root folder of the downloaded repository.
   * Then run `$ composer.phar update`
   * Now all the vendors are installed.
