@@ -8,7 +8,7 @@ The aim is to create a web site for the snowboarder community. A connected user 
 ## 2-Requirements
 This project use Symfony 4 framework and Symfony 4 requires PHP version > 7.1.3 to run. 
 
-## 4-Installation 
+## 3-Installation 
 1. Clone this repository (Master or Production branches)
 2. Put the downloaded repository into your server root folder. You can also use the Symfony server, in this case you don't have to put the dowloaded repository in your root server folder, but after complete installation you will have to run the `$ php bin/console server:run`command.
 3. Install the vendors : 
