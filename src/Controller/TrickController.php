@@ -36,7 +36,7 @@ class TrickController extends Controller
     /**
      * @Route("/trick/{name}", name="trick_show")
      */
-    public function showAction(Trick $trick) // on utilise les annotations et le SensioFrameworkExtraBundle
+    public function showAction(Trick $trick) 
     {
         if(!$trick)
         {
