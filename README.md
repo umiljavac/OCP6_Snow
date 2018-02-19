@@ -18,8 +18,8 @@ This project use Symfony 4 framework and Symfony 4 requires PHP version > 7.1.3 
 4. Set the database :
   * In .env file customize the line :
   `DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"`
-  * You may also have to configure the `config/packages/doctrine.yaml`file for customize your MySQL version.
-  * Create the database : '$ php bin/console doctrine:database:create`
+  * You may also have to configure the `config/packages/doctrine.yaml`file for adjust your MySQL version.
+  * Create the database : `$ php bin/console doctrine:database:create`
   * Create all the tables : `$ php bin/console doctrine:migrations:diff` and `$ php bin/console doctrine:migrations:migrate`
 5. Fill the database with a data set example : `$ php bin/console doctrine:fixtures:load`
 
