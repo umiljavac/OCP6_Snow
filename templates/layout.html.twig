@@ -34,7 +34,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/home#tricks-anchor">Tricks</a>
+                    <a href="/#tricks-anchor">Tricks</a>
                 </li>
                 {% if is_granted('ROLE_USER') %}
                 <li>
@@ -79,7 +79,7 @@
         {%  if (app.request.get('_route') == 'home') %}
             <a href="#tricks-anchor" class="scroll-to">
         {% else %}
-            <a href="/home#tricks-anchor" class="scroll-to">
+            <a href="/#tricks-anchor" class="scroll-to">
         {% endif %}
             <div id="menu-scroll-connected"><i class="glyphicon text-center glyphicon-flash"></i></div></a>
         <a href="{{ path('home') }}"><div id="menu-home"><i class="glyphicon text-center glyphicon-home"></i></div></a>
@@ -88,7 +88,7 @@
         {% if (app.request.get('_route') == 'home') %}
             <a href="#tricks-anchor" class="scroll-to"><div id="menu-scroll"><i class="glyphicon text-center glyphicon-flash"></i></div></a>
         {% else %}
-            <a href="/home#tricks-anchor" class="scroll-to"><div id="menu-scroll"><i class="glyphicon text-center glyphicon-flash"></i></div></a>
+            <a href="/#tricks-anchor" class="scroll-to"><div id="menu-scroll"><i class="glyphicon text-center glyphicon-flash"></i></div></a>
         {% endif %}
     {% endif %}
     </aside>

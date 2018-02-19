@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrickController extends Controller
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
     public function indexAction()
     {
