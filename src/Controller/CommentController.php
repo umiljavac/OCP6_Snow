@@ -54,7 +54,5 @@ class CommentController extends Controller
         $this->addFlash('notice', 'Commentaire supprimé !');
 
         return $this->redirectToRoute('trick_show', array('name' => $trick->getName()));
-
     }
-
 }

@@ -64,4 +64,9 @@ class TrickGroup
     {
         return $this->tricks;
     }
+
+    public function addTrick(Trick $trick)
+    {
+        $this->tricks[] = $trick;
+    }
 }

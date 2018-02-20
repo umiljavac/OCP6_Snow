@@ -17,7 +17,7 @@ $(document).ready(function() {
     function addImage($container) {
         var template = $container.attr('data-prototype')
             .replace(/__name__label__/g, 'Image n°' + (indexI + 1))
-          //  .replace(/__name__/g,        indexI)
+            .replace(/__name__/g,        indexI)
         ;
         var $prototype = $(template);
         addDeleteLink($prototype);
@@ -78,17 +78,17 @@ $(document).ready(function() {
     var counter = imgs.length;
     for (var i = 0; i < imgs.length; i++)
     {
-       var formElement = $('#trick_images_'+ i + '_file');
-       formElement.after(imgs[i]);
-       formElement.hide();
+        var formElement = $('#trick_images_'+ i + '_file');
+        formElement.after(imgs[i]);
+        formElement.hide();
 
-       var divElement = $('#trick_images_' + i);
-       divElement.prev().text('Image n° ' + i);
+        var divElement = $('#trick_images_' + i);
+        divElement.prev().text('Image n° ' + i);
     }
 
     var add = $('#add_image');
     add.click(function () {
-       $('#trick_images_' + counter +'_file').prev().hide();
+        $('#trick_images_' + counter +'_file').prev().hide();
         var $container = $('div#trick_images');
         var indexI = $container.find(':input').length;
         for (var i = 0; i <= indexI; i++ )
@@ -101,26 +101,26 @@ $(document).ready(function() {
 
     });
 
-     var del = $('.delete');
-     del.click(function () {
+    var del = $('.delete');
+    del.click(function () {
         attributeLabel();
         console.log('atrribution post delete')
     });
 
-     function attributeLabel() {
-         var mainDiv = $("#trick_images");
-         var labelImg =  mainDiv.find("label");
-         $(labelImg[0]).text("Image principale");
-         var mediaUp = mainDiv.find(".form-media-up");
-         $(mediaUp[0]).attr("class", "form-group form-media-up img-form");
-          var imgTarget = $(mediaUp[0]).find('img');
-         $(imgTarget).attr("class", "img-responsive");
-         $(imgTarget).prev().attr("class", "image-full-form");
-         for (var s = 1; s < labelImg.length; s++)
-         {
-             $(labelImg[s]).text("Image n° " + (s));
-         }
-     }
+    function attributeLabel() {
+        var mainDiv = $("#trick_images");
+        var labelImg =  mainDiv.find("label");
+        $(labelImg[0]).text("Image principale");
+        var mediaUp = mainDiv.find(".form-media-up");
+        $(mediaUp[0]).attr("class", "form-group form-media-up img-form");
+        var imgTarget = $(mediaUp[0]).find('img');
+        $(imgTarget).attr("class", "img-responsive");
+        $(imgTarget).prev().attr("class", "image-full-form");
+        for (var s = 1; s < labelImg.length; s++)
+        {
+            $(labelImg[s]).text("Image n° " + (s));
+        }
+    }
 
     $("#trick_images_0").prev().text('Image principale');
 });

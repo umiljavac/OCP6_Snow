@@ -8,10 +8,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Image;
 use App\Entity\Trick;
 use App\Form\Type\TrickType;
 use App\Service\UploadedImgCleaner;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrickController extends Controller
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
     public function indexAction()
     {
@@ -36,7 +36,7 @@ class TrickController extends Controller
     /**
      * @Route("/trick/{name}", name="trick_show")
      */
-    public function showAction(Trick $trick, Request $request) // on utilise les annotations et le SensioFrameworkExtraBundle
+    public function showAction(Trick $trick) 
     {
         if(!$trick)
         {

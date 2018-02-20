@@ -2,7 +2,7 @@ $(document).ready(function () {
     $('.scroll-to').on('click', function() {
         var anchor = $(this).attr('href');
         console.log(anchor);
-        $('html, body').animate( { scrollTop: $(anchor).offset().top }, 1000);
+        $('html, body').animate( { scrollTop: $(anchor).offset().top }, 1500);
         return false;
     });
 });
