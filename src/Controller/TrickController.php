@@ -36,7 +36,7 @@ class TrickController extends Controller
     /**
      * @Route("/trick/{name}", name="trick_show")
      */
-    public function showAction(Trick $trick) 
+    public function showAction(Trick $trick)
     {
         if(!$trick)
         {
@@ -56,9 +56,15 @@ class TrickController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $trick = $form->getData();
             $em = $this->getDoctrine()->getManager();
+            $trick = $form->getData();
+            $trickGroup = $form->get('addTrickGroup')->getData();
+            if ($trickGroup->getName() !== null)
+            {
+                $trickGroup->addTrick($trick);
+                $em->persist($trickGroup);
+                $trick->setTrickGroup($trickGroup);
+            }
             $em->persist($trick);
             $em->flush();
             $this->addFlash('notice', 'La figure a bien été ajoutée');
@@ -77,11 +83,17 @@ class TrickController extends Controller
             throw $this->createNotFoundException('La figure n\'éxiste pas');
         }
         $oldImgUrls = $uploadedImgCleaner->getOldImgUrls($trick);
-
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $trickGroup = $form->get('addTrickGroup')->getData();
+            if ($trickGroup->getName() !== null)
+            {
+                $trickGroup->addTrick($trick);
+                $em->persist($trickGroup);
+                $trick->setTrickGroup($trickGroup);
+            }
             $uploadedImgCleaner->cleanImgFile($oldImgUrls, $trick);
             $trick->updated();
             $em->flush();

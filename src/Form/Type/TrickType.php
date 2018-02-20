@@ -30,6 +30,11 @@ class TrickType extends AbstractType
                 'class' => TrickGroup::class,
                 'choice_label' => 'name'
             ))
+            ->add('addTrickGroup', TrickGroupType::class, array(
+                'mapped' => false,
+                    'label' => false
+                    )
+            )
             ->add('description', TextareaType::class)
            ->add('images', CollectionType::class, array (
                'entry_type' => ImageType::class,
