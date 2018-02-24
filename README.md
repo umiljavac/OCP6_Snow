@@ -1,6 +1,10 @@
 # OCP6_Snow
 Sixth project of OpenClassrooms "Développeur d'application PHP/Symfony" cursus. 
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/1ff062f1-f99e-4d5e-8ccb-cae8d8c10eb2/big.png)](https://insight.sensiolabs.com/projects/1ff062f1-f99e-4d5e-8ccb-cae8d8c10eb2)
+
+This is a stable development version. I mean that you will have all the Symfony dev environment. 
+
 ## 1-Intro 
 The aim of this project is to create a web site for the snowboarder community. A connected user can register a new snow trick, delete or update an older one, add comments on the tricks dedicated forum and customize his user profile.
   
@@ -8,7 +12,7 @@ The aim of this project is to create a web site for the snowboarder community. A
 This project use Symfony 4 framework and Symfony 4 requires PHP version > 7.1.3 to run. 
 
 ## 3-Installation 
-1. Clone this repository (Master or Production branches)
+1. Clone this repository (Master branche)
 2. Put the downloaded repository into your server root folder. You can also use the Symfony server, in this case you don't have to put the dowloaded repository in your root server folder, but after complete installation you will have to run the `$ php bin/console server:run` command.
 3. Install the vendors : 
   * Download [composer](https://getcomposer.org/)
@@ -23,6 +27,9 @@ This project use Symfony 4 framework and Symfony 4 requires PHP version > 7.1.3 
   * Create all the tables 
     * `$ php bin/console doctrine:migrations:diff`  
     * `$ php bin/console doctrine:migrations:migrate`
+ 5. Customize your own Swifmailer : 
+   * This is a dev environment, the application sends emails to validate a new user registration or validate a new user password. Swiftmailer is used to achieve this.
+   * So, go to [Symfony 'how to send emails'](https://symfony.com/doc/current/email.html) to configure and test by your own this part.
 ## Optional 
 Just after installation, you can fill the database with a set of tricks examples allready written in the Datafixtures folder with their respective images stored in the public/uploads/imgs folder. 
 To do that, you first have to disable the Lifecycle Callbacks of Image class: 
