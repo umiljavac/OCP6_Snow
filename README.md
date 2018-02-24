@@ -26,8 +26,8 @@ This project use Symfony 4 framework and Symfony 4 requires PHP version > 7.1.3 
   * Create all the tables 
     * `$ php bin/console doctrine:migrations:diff`  
     * `$ php bin/console doctrine:migrations:migrate`
- 5. Customize your own Swifmailer : 
-   * This is a dev environment, the application sends emails to validate a new user registration or validate a new user password. Swiftmailer is used to achieve this.
+ 5. Customize your own Swift Mailer : 
+   * This is a dev environment, the application sends emails to validate a new user registration or validate a new user password. Swift Mailer is used to achieve this.
    * So, go to [Symfony 'how to send emails'](https://symfony.com/doc/current/email.html) to configure and test by your own this part.
 ## Optional 
 Just after installation, you can fill the database with a set of tricks examples allready written in the Datafixtures folder with their respective images stored in the public/uploads/imgs folder. 
