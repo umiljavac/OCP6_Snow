@@ -3,8 +3,7 @@ Sixth project of OpenClassrooms "Développeur d'application PHP/Symfony" cursus.
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/1ff062f1-f99e-4d5e-8ccb-cae8d8c10eb2/big.png)](https://insight.sensiolabs.com/projects/1ff062f1-f99e-4d5e-8ccb-cae8d8c10eb2)
 
-This is a stable development version. I mean that you will have all the Symfony dev environment. 
-
+This is a stable Symfony development environment version.
 ## 1-Intro 
 The aim of this project is to create a web site for the snowboarder community. A connected user can register a new snow trick, delete or update an older one, add comments on the tricks dedicated forum and customize his user profile.
   
