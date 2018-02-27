@@ -38,7 +38,7 @@ class PasswordController extends Controller
         $user = $repo->findOneBy(['username' => $username]);
         if (!$user)
         {
-            throw $this->createNotFoundException('Tu as dû mal orthographier ton nom, try again !');
+            throw $this->createNotFoundException('Tu as dû mal orthographier ton pseudo , try again !');
         }
         $resetToken = md5($user->getEmail());
         $user->setResetPasswordToken($resetToken);

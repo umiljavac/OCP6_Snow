@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Form\Type\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,6 +26,7 @@ class CommentController extends Controller
     {
         $comment = new Comment();
         $content = htmlspecialchars($request->get('content'));
+
         if (!empty($content))
         {
             $comment->setContent($content);
