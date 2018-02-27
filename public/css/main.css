@@ -23,32 +23,6 @@ a {
     position: relative;
     top: -90px;
 }
-/***************************************
-                FONT
-
- font-family: 'Sedgwick Ave Display', cursive;
-
- font-family: 'Indie Flower', cursive;
-
- font-family: 'Shrikhand', cursive;
-
-
-
-    font-family: 'Permanent Marker', cursive; +1
-
-    font-family: 'Orbitron', sans-serif;
-
-    font-family: 'Bangers', cursive; +1
-
-    font-family: 'Caveat', cursive; +2
-
-    font-family: 'Monoton', cursive; +3
-
-    font-family: 'Rock Salt', cursive; -1
-
-    font-family: 'Special Elite', cursive;
-
- **************************************/
 
 /***************************************
                 IMG
@@ -62,54 +36,43 @@ a {
     margin-top: 50px;
 }
 
+.img-back, .img-back2 {
+    background-size: cover;
+    width: 100vw;
+    position: relative;
+}
+
 .img-back {
     background-image: url("../img/pk5full.jpg");
-    background-size: cover;
     margin-top: 50px;
-    width: 100vw;
     height: 123vw;
-    position: relative;
 }
 
 .img-back2 {
     background-image: url("../img/ak4.jpg");
-    background-size: cover;
     margin-top: 10px;
-    width: 100vw;
     height: 52.05vw;
-    position: relative;
-}
-
-.img-footer {
 }
 
 .main-head {
     position: relative;
 }
 
+.text1-uppon-img, .text-uppon-img2 {
+    border: none !important;
+    position: absolute;
+
+}
+
 .text1-uppon-img {
     text-align: center;
     background-color: rgba(23, 24, 23, 0.4);
-    border: none !important;
-    position: absolute;
     bottom: 0;
     width: 100%;
 }
 
-.text4-uppon-img {
-    background-color: rgba(24, 25, 25, 0.4);
-    border: none !important;
-    position: absolute;
-    bottom: 10%;
-    width: 40%;
-    left: 0%;
-    text-align: center;
-}
-
 .text-uppon-img2 {
     background-color: rgba(2, 0, 0, 0.2);
-    border: none !important;
-    position: absolute;
     bottom: 40px;
     right: 0;
 }
@@ -191,9 +154,6 @@ a {
     margin-bottom: -20px;
 }
 
-#trick-content {
-}
-
 .h1-snow h1 {
     font-size: 6em;
     color: whitesmoke;
@@ -205,7 +165,6 @@ a {
 .h1-snow {
     background-color: white;
     margin: 30px 0;
-
 }
 
 .trick-codex {
@@ -319,7 +278,7 @@ a {
     background-color: #313131;
 }
 
-#add_image {
+#add_image, #trick_images {
     color: skyblue;
 }
 
@@ -334,22 +293,6 @@ a {
 
 #add_video:hover {
     background-color: #313131;
-}
-#trick_name {
-}
-
-#trick_trickGroup {
-
-}
-
-#trick_description {
-}
-
-#trick_images {
-    color: skyblue;
-}
-
-#trick_images .form-group {
 }
 
 #trick_videos {
@@ -430,17 +373,13 @@ a {
     font-size: 4em;
     color: darkorange;
    background-color: #313131;
-   /* text-shadow: 0  13px 3px darkorange, 0 26px 4px #313131, 0 0.1em 1em orangered, 0 0 2em grey; */
 }
 
 .description {
     background-color: whitesmoke;
     margin-bottom: 22px;
-    padding-left: 15px;
-    padding-bottom: 20px;
     font-size: 1.6em;
-    padding-top: 15px;
-    padding-right: 15px;
+    padding: 15px 15px 20px 15px;
 }
 
 .description p {
@@ -536,8 +475,6 @@ a {
 /*************************************
              COMMENTS
 **************************************/
-#comments {
-}
 
 .trick-comments {
     background-color: whitesmoke;
@@ -642,14 +579,6 @@ a {
     font-size: 1em;
 }
 
-.font-marker {
-    font-family: 'Permanent Marker', cursive;
-}
-
-.font-bangers {
-    font-family: 'Bangers', cursive;
-}
-
 .font-indy {
     font-family: 'Indie Flower', cursive;
 }
@@ -695,22 +624,7 @@ a {
     border: 4px solid black;
 }
 
-#menu-add {
-    background-color: black;
-    display: none;
-}
-
-#menu-user {
-    background-color: black;
-    display: none;
-}
-
-#menu-home {
-    background-color: black;
-    display: none;
-}
-
-#menu-edit {
+#menu-add, #menu-user, #menu-edit, #menu-home, #menu-scroll-connected {
     background-color: black;
     display: none;
 }
@@ -719,55 +633,46 @@ a {
     background-color: black;
 }
 
-#menu-scroll-connected {
-    background-color: black;
-    display: none;
+.glyphicon-flash, .glyphicon-plus, .glyphicon-minus, .glyphicon-home, .glyphicon-pencil, .glyphicon-sunglasses, .glyphicon-edit {
+    margin: auto;
 }
 
-.glyphicon-flash
-{
+.glyphicon-flash {
     color: #8959A8;
-    margin: auto;
     padding-bottom: 1px;
     text-decoration: none;
 }
 
 .glyphicon-plus {
     color: darkorange;
-    margin: auto;
     padding-bottom: 3px;
     padding-left: 1px;
 }
 
 .glyphicon-minus {
     color: darkorange;
-    margin: auto;
     padding-bottom: 3px;
     padding-right: 2px;
 }
 
 .glyphicon-home {
     color: palevioletred;
-    margin: auto;
     padding-bottom: 3px;
     padding-right: 2px;
 }
 
 .glyphicon-pencil {
     color: skyblue;
-    margin: auto;
 }
 
 .glyphicon-sunglasses {
     color: darkseagreen;
-    margin: auto;
     padding-bottom: 3px;
     padding-left: 2px;
 }
 
 .glyphicon-edit {
     color: #ffcc00;
-    margin: auto;
     padding-bottom: 2px;
 }
 
@@ -784,7 +689,6 @@ a {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content/Box */
 .modal-content {
     background-color: #313131;
     margin: 15% auto;
@@ -892,4 +796,3 @@ ul .dropdown-menu a:hover {
 a:focus, a:hover {
     color: black;
 }
-
