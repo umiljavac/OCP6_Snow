@@ -16,7 +16,7 @@ This project use Symfony 4 framework and Symfony 4 requires PHP version > 7.1.3 
 3. Install the vendors : 
   * Download [composer](https://getcomposer.org/)
   * Put the composer.phar file into the root folder of the downloaded repository.
-  * Then run `$ composer.phar update`
+  * Then run `$ php composer.phar update`
   * Now all the vendors are installed.
 4. Set the database :
   * In .env file customize the line :
