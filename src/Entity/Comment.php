@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
  */
@@ -62,7 +61,7 @@ class Comment
     /**
      * @param mixed $trick
      */
-    public function setTrick( Trick $trick): void
+    public function setTrick(Trick $trick): void
     {
         $this->trick = $trick;
         $trick->addComment($this);

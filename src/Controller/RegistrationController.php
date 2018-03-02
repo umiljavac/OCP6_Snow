@@ -27,8 +27,7 @@ class RegistrationController extends Controller
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        if ( $form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
             $activationToken = md5($user->getEmail());
@@ -56,26 +55,27 @@ class RegistrationController extends Controller
         $user = $repository->findOneBy(['activationToken' => $token]);
         $em = $this->getDoctrine()->getManager();
 
-        if(!$user)
-        {
+        if (!$user) {
             throw $this->createNotFoundException('Désolé c\'est moche : tu n\'éxiste pas :( Try again !');
         }
         $user->setActive(true);
         $user->setActivationToken(null);
         $em->persist($user);
         $em->flush();
-        $this->addFlash('login', 'Félicitations ! Ton inscription est terminée, tu peux maintenant te connecter :)');
+        $this->addFlash('login', 'Félicitations ! Ton inscription est terminée, 
+                                                tu peux maintenant te connecter :)');
         return $this->redirectToRoute('home');
     }
 
-    public function sendConfirmation( \Swift_Mailer $mailer, $user, $validationToken)
+    public function sendConfirmation(\Swift_Mailer $mailer, $user, $validationToken)
     {
         $message = (new \Swift_Message())
             ->setSubject('Snow Tricks : validation de votre compte')
             ->setFrom('ulm_ulm@hotmail.com')
             ->setTo($user->getEmail())
             ->setBody(
-                $this->renderView('emails/registrationValidation.html.twig',
+                $this->renderView(
+                    'emails/registrationValidation.html.twig',
                     array(
                           'token' => $validationToken,
                           'user'  => $user)

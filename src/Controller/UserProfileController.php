@@ -29,8 +29,7 @@ class UserProfileController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->find(User::class, $id);
-        if(!$user)
-        {
+        if (!$user) {
             throw $this->createNotFoundException('Pas de compte pas de chocolat.. so sad.. ');
         }
         $userProfile = $user->getUserProfile();
@@ -45,8 +44,7 @@ class UserProfileController extends Controller
     public function updateAction(Request $request)
     {
         $user = $this->getUser();
-        if(!$user)
-        {
+        if (!$user) {
             throw $this->createNotFoundException('Vous devez créer un compte !');
         }
         $userProfile = $user->getUserProfile();
@@ -54,8 +52,7 @@ class UserProfileController extends Controller
         $form = $this->createForm(UserProfileType::class, $userProfile);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             $this->addFlash('notice', 'Votre profil est à jour !');
             return $this->redirectToRoute('show_profile', array('id' => $user->getId()));

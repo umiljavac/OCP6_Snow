@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AvatarRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -87,8 +86,7 @@ class Avatar
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
-        if (null !== $this->url)
-        {
+        if (null !== $this->url) {
             $this->tempFile = $this->url;
             $this->url = null;
             $this->alt = null;
@@ -113,7 +111,7 @@ class Avatar
     public function postUpload()
     {
         $fileToRemove = $this->tempFile;
-        unlink($this->getUploadRootDir() . '/' . $fileToRemove );
+        unlink($this->getUploadRootDir() . '/' . $fileToRemove);
     }
 
     public function getUploadRootDir()

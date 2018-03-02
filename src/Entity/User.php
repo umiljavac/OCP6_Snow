@@ -260,4 +260,3 @@ class User implements AdvancedUserInterface, \Serializable
             ) = unserialize($serialized);
     }
 }
-

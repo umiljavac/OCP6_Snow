@@ -38,8 +38,7 @@ class TrickController extends Controller
      */
     public function showAction(Trick $trick)
     {
-        if(!$trick)
-        {
+        if (!$trick) {
             throw $this->createNotFoundException('La figure n\'éxiste pas');
         }
         return $this->render('views/show.html.twig', array('trick' => $trick));
@@ -59,8 +58,7 @@ class TrickController extends Controller
             $em = $this->getDoctrine()->getManager();
             $trick = $form->getData();
             $trickGroup = $form->get('addTrickGroup')->getData();
-            if ($trickGroup->getName() !== null)
-            {
+            if ($trickGroup->getName() !== null) {
                 $trickGroup->addTrick($trick);
                 $em->persist($trickGroup);
                 $trick->setTrickGroup($trickGroup);
@@ -79,7 +77,7 @@ class TrickController extends Controller
     public function updateTrickAction(Trick $trick, Request $request, UploadedImgCleaner $uploadedImgCleaner)
     {
         $em = $this->getDoctrine()->getManager();
-        if(!$trick) {
+        if (!$trick) {
             throw $this->createNotFoundException('La figure n\'éxiste pas');
         }
         $oldImgUrls = $uploadedImgCleaner->getOldImgUrls($trick);
@@ -88,8 +86,7 @@ class TrickController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $trickGroup = $form->get('addTrickGroup')->getData();
-            if ($trickGroup->getName() !== null)
-            {
+            if ($trickGroup->getName() !== null) {
                 $trickGroup->addTrick($trick);
                 $em->persist($trickGroup);
                 $trick->setTrickGroup($trickGroup);

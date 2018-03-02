@@ -36,8 +36,7 @@ class PasswordController extends Controller
         $repo = $this->getDoctrine()->getRepository(User::class);
         $em = $this->getDoctrine()->getManager();
         $user = $repo->findOneBy(['username' => $username]);
-        if (!$user)
-        {
+        if (!$user) {
             throw $this->createNotFoundException('Tu as dû mal orthographier ton pseudo , try again !');
         }
         $resetToken = md5($user->getEmail());
@@ -46,7 +45,9 @@ class PasswordController extends Controller
         $em->flush();
         $this->sendToken($mailer, $user, $resetToken);
 
-        $this->addFlash('login','Un email de réinitialisation de mot de passe vient d\'être envoyé dans ta boîte mail, connecte toi sur ta messagerie et suis les instructions :)' );
+        $this->addFlash('login', 'Un email de réinitialisation de mot de passe vient d\'être envoyé dans ta boîte mail, 
+                                                 connecte toi sur ta messagerie et suis les instructions :)');
+
         return $this->redirectToRoute('home');
     }
 
@@ -62,12 +63,13 @@ class PasswordController extends Controller
                 ->setFrom('ulm_ulm@hotmail.com')
                 ->setTo($user->getEmail())
                 ->setBody(
-                    $this->renderView('emails/resetPasswordValidation.html.twig',
+                    $this->renderView(
+                        'emails/resetPasswordValidation.html.twig',
                         array(
                             'token' => $resetToken,
                             'user' => $user)
                     ),
-                'text/html'
+                    'text/html'
                 );
         $mailer->send($message);
     }
@@ -83,8 +85,9 @@ class PasswordController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository(User::class);
         $user = $repository->findOneBy(['resetPasswordToken' => $token]);
-        if(!$user) {
-            throw $this->createNotFoundException('Il semble que tu n\'existe pas dans la base de données.. Recommence, sait-on jamais :)' );
+        if (!$user) {
+            throw $this->createNotFoundException('Il semble que tu n\'existe pas dans la base de données.. 
+                                                  Recommence, sait-on jamais :)');
         }
         $form = $this->createForm(UpdatePasswordType::class);
         $form->handleRequest($request);

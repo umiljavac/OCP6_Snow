@@ -17,8 +17,7 @@ class UploadedImgCleaner
     {
         $oldImgUrls = new ArrayCollection();
 
-        foreach ($trick->getImages() as $oldImg)
-        {
+        foreach ($trick->getImages() as $oldImg) {
             $oldImgUrls->add($oldImg->getUrl());
         }
         return $oldImgUrls;
@@ -27,15 +26,12 @@ class UploadedImgCleaner
     public function cleanImgFile($oldImgUrls, Trick $trick)
     {
         $newImgUrls = new ArrayCollection();
-        foreach ($trick->getImages() as $image)
-        {
+        foreach ($trick->getImages() as $image) {
             $newImgUrls->add($image->getUrl());
         }
 
-        foreach ($oldImgUrls as $oldImgUrl)
-        {
-            if (false === $newImgUrls->contains($oldImgUrl))
-            {
+        foreach ($oldImgUrls as $oldImgUrl) {
+            if (false === $newImgUrls->contains($oldImgUrl)) {
                 unlink('uploads/img/' . $oldImgUrl);
             }
         }
@@ -44,8 +40,7 @@ class UploadedImgCleaner
     public function deleteTrickImg(Trick $trick)
     {
         $imageList = $trick->getImages();
-        foreach ($imageList as $image)
-        {
+        foreach ($imageList as $image) {
             $uploadDir = $image->getUploadRootDir();
             unlink($uploadDir . '/' . $image->getUrl());
         }

@@ -8,7 +8,6 @@
 
 namespace App\Form\Type;
 
-
 use App\Entity\Avatar;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -22,8 +21,7 @@ class AvatarType extends AbstractType
     {
         $builder->add('file', FileType::class, array(
             'constraints' => new File(['mimeTypes' => array('image/jpg', 'image/jpeg', 'image/png', 'image/gif')])
-            )
-        );
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
