@@ -10,12 +10,11 @@ namespace App\Service\EntityManager;
 
 use App\Entity\User;
 use App\Form\Type\UpdatePasswordType;
+use App\Service\Mailer\UserMailer;
 use Doctrine\ORM\EntityManagerInterface;
-use Psr\Container\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\Type\UserRegistrationType;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -27,27 +26,21 @@ class UserManager
 {
     private $em;
     private $repository;
-    private $mailer;
     private $formFactory;
     private $passwordEncoder;
-    private $flashBag;
-    private $container;
+    private $userMailer;
 
     public function __construct(
         EntityManagerInterface $em,
-        \Swift_Mailer $mailer,
         FormFactoryInterface $formFactory,
         UserPasswordEncoderInterface $passwordEncoder,
-        FlashBagInterface $flashBag,
-        ContainerInterface $container
+        UserMailer $userMailer
     ) {
         $this->em = $em;
         $this->repository = $em->getRepository(User::class);
-        $this->mailer = $mailer;
         $this->formFactory = $formFactory;
         $this->passwordEncoder = $passwordEncoder;
-        $this->flashBag = $flashBag;
-        $this->container = $container;
+        $this->userMailer = $userMailer;
     }
 
     /**
@@ -68,10 +61,12 @@ class UserManager
             $user->setActivationToken($activationToken);
             $this->em->persist($user);
             $this->em->flush();
-            $this->sendRegistrationConfirmation($user, $activationToken);
-            $this->flashBag->add('login', 'Un email a été envoyé dans ta boîte mail, 
-                                                 merci de cliquer sur le lien qu\'il contient pour 
-                                                 finaliser ton inscription !');
+            $this->userMailer->sendMailWithToken(
+                $user,
+                $this->userMailer::SUBJECT_REGISTER,
+                $this->userMailer::TEMPLATE_REGISTER,
+                $activationToken
+            );
             return true;
         }
         return $form->createView();
@@ -107,7 +102,12 @@ class UserManager
         $resetToken = md5($user->getEmail());
         $user->setResetPasswordToken($resetToken);
         $this->em->flush();
-        $this->sendResetPasswordConfirmation($user, $resetToken);
+        $this->userMailer->sendMailWithToken(
+            $user,
+            $this->userMailer::SUBJECT_RESETPW,
+            $this->userMailer::TEMPLATE_RESETPW,
+            $resetToken
+        );
     }
 
     /**
@@ -133,54 +133,6 @@ class UserManager
             return true;
         }
         return $form->createView();
-    }
-
-    /**
-     * @param User $user
-     * @param $validationToken
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
-    public function sendRegistrationConfirmation(User $user, $validationToken)
-    {
-        $message = (new \Swift_Message())
-            ->setSubject('Snow Tricks : validation de votre compte')
-            ->setFrom('ulm_ulm@hotmail.com')
-            ->setTo($user->getEmail())
-            ->setBody(
-                $this->container->get('twig')->render(
-                    'emails/registrationValidation.html.twig',
-                    array(
-                        'token' => $validationToken,
-                        'user'  => $user)
-                ),
-                'text/html'
-            );
-        $this->mailer->send($message);
-    }
-
-    /**
-     * @param $user
-     * @param $resetToken
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
-    public function sendResetPasswordConfirmation(User $user, $resetToken)
-    {
-        $message = (new \Swift_Message())
-            ->setSubject('Snow Tricks : réinitialisation de ton mot de passe')
-            ->setFrom('ulm_ulm@hotmail.com')
-            ->setTo($user->getEmail())
-            ->setBody(
-                $this->container->get('twig')->render(
-                    'emails/resetPasswordValidation.html.twig',
-                    array(
-                        'token' => $resetToken,
-                        'user' => $user)
-                ),
-                'text/html'
-            );
-        $this->mailer->send($message);
     }
 
     /**
