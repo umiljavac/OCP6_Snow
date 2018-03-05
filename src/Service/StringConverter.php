@@ -8,7 +8,6 @@
 
 namespace App\Service;
 
-
 class StringConverter
 {
     public function stringToLowerNoAccent($str)

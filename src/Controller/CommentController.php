@@ -27,8 +27,7 @@ class CommentController extends Controller
         $comment = new Comment();
         $content = htmlspecialchars($request->get('content'));
 
-        if (!empty($content))
-        {
+        if (!empty($content)) {
             $comment->setContent($content);
             $comment->setTrick($trick);
             $comment->setUser($this->getUser());

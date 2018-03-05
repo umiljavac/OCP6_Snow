@@ -8,7 +8,6 @@
 
 namespace App\Form\Type;
 
-
 use App\Entity\Trick;
 use App\Entity\TrickGroup;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -33,8 +32,7 @@ class TrickType extends AbstractType
             ->add('addTrickGroup', TrickGroupType::class, array(
                 'mapped' => false,
                     'label' => false
-                    )
-            )
+                    ))
             ->add('description', TextareaType::class)
            ->add('images', CollectionType::class, array (
                'entry_type' => ImageType::class,

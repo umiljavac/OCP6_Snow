@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VideoRepository")
  */
@@ -50,12 +49,10 @@ class Video
      */
     public function setLink($link): void
     {
-        if (preg_match('#youtube#', $link))
-        {
+        if (preg_match('#youtube#', $link)) {
             $link = preg_replace('#watch\?v=#', 'embed/', $link);
         }
-        if (preg_match('#dailymotion#', $link))
-        {
+        if (preg_match('#dailymotion#', $link)) {
             $link = preg_replace('#video#', 'embed/video', $link);
         }
         $this->link = $link;

@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -117,8 +116,7 @@ class Image
      */
     public function upload()
     {
-        if(!$this->id)
-        { // si l'image existe
+        if (!$this->id) { // si l'image existe
             $fileName = md5(uniqid()) . '.' . $this->file->guessExtension();
             $this->url = $fileName;
             $this->alt = 'Image d\'un : ' . $this->trick->getName();

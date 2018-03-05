@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TrickRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -160,7 +159,7 @@ class Trick
     /**
      * @param \DateTime $updateDate
      */
-    public function setUpdateDate( \DateTime $updateDate): void
+    public function setUpdateDate(\DateTime $updateDate): void
     {
         $this->updateDate = $updateDate;
     }

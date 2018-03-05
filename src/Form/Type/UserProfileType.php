@@ -8,7 +8,6 @@
 
 namespace App\Form\Type;
 
-
 use App\Entity\Avatar;
 use App\Entity\UserProfile;
 use Symfony\Component\Form\AbstractType;
@@ -27,7 +26,7 @@ class UserProfileType extends AbstractType
                 'required' => false,
                 'label' => 'Lassé de ton avatar ? Change !'
             ))
-            ->add('infos', TextareaType::class )
+            ->add('infos', TextareaType::class)
             ->add('enregistrer', SubmitType::class)
         ;
     }
@@ -38,5 +37,4 @@ class UserProfileType extends AbstractType
             'data_class' => UserProfile::class
         ));
     }
-
 }

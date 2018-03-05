@@ -16,25 +16,21 @@ class TrickTest extends TestCase
     public function testGetName()
     {
         $trick = new Trick();
-        $trick->setName('jApAn Air');
-        $name = $trick->getName();
-        $this->assertEquals('japan-air', $name);
+        $trick->setName('jApÄn Air');
+        $this->assertEquals('japan-air', $trick->getName());
     }
 
     public function testGetUptadedDate()
     {
         $trick = new Trick();
         $trick->updated();
-        $updateDate = $trick->getUpdateDate();
-        $this->assertNotEquals(new \DateTime('now'), $updateDate);
+        $this->assertNotEquals(new \DateTime('now'), $trick->getUpdateDate());
     }
 
     public function testDbToName()
     {
         $trick = new Trick();
         $trick->setName('JumPin AiR One');
-        $dbToName = $trick->dbToName();
-        $this->assertEquals('Jumpin air one', $dbToName);
+        $this->assertEquals('Jumpin air one', $trick->dbToName());
     }
-
 }
