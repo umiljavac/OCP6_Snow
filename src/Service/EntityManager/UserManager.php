@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\Type\UserRegistrationType;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
@@ -29,7 +28,6 @@ class UserManager
     private $em;
     private $repository;
     private $mailer;
-    private $router;
     private $formFactory;
     private $passwordEncoder;
     private $flashBag;
@@ -38,7 +36,6 @@ class UserManager
     public function __construct(
         EntityManagerInterface $em,
         \Swift_Mailer $mailer,
-        RouterInterface $router,
         FormFactoryInterface $formFactory,
         UserPasswordEncoderInterface $passwordEncoder,
         FlashBagInterface $flashBag,
@@ -47,7 +44,6 @@ class UserManager
         $this->em = $em;
         $this->repository = $em->getRepository(User::class);
         $this->mailer = $mailer;
-        $this->router = $router;
         $this->formFactory = $formFactory;
         $this->passwordEncoder = $passwordEncoder;
         $this->flashBag = $flashBag;
@@ -97,11 +93,11 @@ class UserManager
     }
 
     /**
-     * @param $request
+     * @param Request $request
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function resetPassword($request)
+    public function resetPassword(Request $request)
     {
         $username = $request->request->get('username');
         $user = $this->repository->findOneBy(['username' => $username]);
@@ -169,7 +165,7 @@ class UserManager
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function sendResetPasswordConfirmation($user, $resetToken)
+    public function sendResetPasswordConfirmation(User $user, $resetToken)
     {
         $message = (new \Swift_Message())
             ->setSubject('Snow Tricks : réinitialisation de ton mot de passe')
